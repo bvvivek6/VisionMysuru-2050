@@ -1,7 +1,19 @@
-import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SiteLayout from "./components/SiteLayout.jsx";
+import LandingPage from "./Pages/LandingPage.jsx";
+import SubmitIdeasPage from "./Pages/SubmitIdeasPage.jsx";
 
-const App = () => {
-  return <div>App</div>;
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <SiteLayout />,
+    children: [
+      { index: true, element: <LandingPage /> },
+      { path: "submit", element: <SubmitIdeasPage /> },
+    ],
+  },
+]);
 
-export default App;
+export default function App() {
+  return <RouterProvider router={router} />;
+}
