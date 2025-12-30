@@ -15,12 +15,12 @@ const HeroSection = () => {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 sm:px-6">
         <div className="max-w-2xl text-start">
-          <p className="md:text-6xl font-bold oswald uppercase tracking-tighter text-white text-4xl">
-            <span className="block text-[var(--primary)]">
+          <h1 className="flex flex-col gap-2 font-bold oswald uppercase tracking-tighter text-white text-4xl leading-tight md:text-6xl">
+            <span className="inline-block w-fit  bg-white px-3  text-[var(--primary)]">
               Vision Mysuru 2050
             </span>
-            Build the future of Mysuru.
-          </p>
+            <span>Build the future of Mysuru</span>
+          </h1>
 
           <p className="mt-6 text-base text-white/85 sm:text-lg">
             A competition for college students, startups, and NGOs to pitch
