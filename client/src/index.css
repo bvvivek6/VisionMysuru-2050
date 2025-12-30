@@ -1,6 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Darker+Grotesque:wght@300..900&family=Oswald:wght@200..700&display=swap");
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    /* Mysuru (Palace) inspired dark theme */
+    --bg: #020202;
+    --surface: #0b0a08;
+    --surface-2: #12100d;
+
+    --text: #f3ead7;
+    --muted: #c9bca3;
+    --muted-2: #a99b84;
+
+    --border: rgba(245, 197, 66, 0.22);
+
+    /* Gold */
+    --accent: #f5c542;
+    --accent-soft: rgba(245, 197, 66, 0.14);
+
+    /* Palace red */
+    --primary: #7a0f0f;
+    --primary-hover: #8c1515;
+    --primary-soft: rgba(122, 15, 15, 0.2);
+
+    --nav-bg: rgba(2, 2, 2, 0.75);
+    --focus: rgba(245, 197, 66, 0.35);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+/* Back-compat if any old markup used this */
+.body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
 .dm-sans {
   font-family: "DM Sans", sans-serif;
 }
