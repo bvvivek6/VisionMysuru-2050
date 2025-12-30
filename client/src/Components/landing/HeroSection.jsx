@@ -10,13 +10,13 @@ const HeroSection = () => {
           alt="Future vision of Mysuru city"
           className="h-full w-full scale-x-[-1] object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/45 to-red-600/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/40 to-red-600/10" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 sm:px-6">
         <div className="max-w-2xl text-start">
           <h1 className="flex flex-col gap-2 font-bold oswald uppercase tracking-tighter text-white text-4xl leading-tight md:text-6xl">
-            <span className="inline-block w-fit  bg-white px-3  text-[var(--primary)]">
+            <span className="inline-block w-fit  bg-white px-3  text-[var(--accent)]">
               Vision Mysuru 2050
             </span>
             <span>Build the future of Mysuru</span>
@@ -31,7 +31,7 @@ const HeroSection = () => {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/submit"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--primary-hover)]"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--primary-hover)]"
             >
               Submit your idea
               <FiArrowRight className="transition-transform group-hover:translate-x-1" />
