@@ -10,18 +10,16 @@ import FooterSection from "../Components/landing/FooterSection.jsx";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-dvh dm-sans bg-[var(--bg)] text-[var(--text)]">
+    <div className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]">
       <TopNav />
-      <main>
-        <HeroSection />
-        <WhySection />
-        <TopicsSection />
-        <TimelineSection />
-        <ObjectivesSection />
-        <FaqsSection />
-        <MysuruSection />
-        <FooterSection />
-      </main>
+      <HeroSection />
+      <WhySection />
+      <TopicsSection />
+      <TimelineSection />
+      <ObjectivesSection />
+      <FaqsSection />
+      <MysuruSection />
+      <FooterSection />
     </div>
   );
 };

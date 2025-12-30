@@ -3,30 +3,32 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
 
-    /* Mysuru (Palace) inspired dark theme */
-    --bg: #020202;
-    --surface: #0b0a08;
-    --surface-2: #12100d;
+    /* Mysuru Palace – Light Heritage Theme */
+    --bg: #faf7f2; /* warm ivory */
+    --surface: #ffffff; /* clean white cards */
+    --surface-2: #f3ede3; /* subtle palace parchment */
 
-    --text: #f3ead7;
-    --muted: #c9bca3;
-    --muted-2: #a99b84;
+    --text: #1f1b16; /* deep charcoal (not pure black) */
+    --button: #ffffff; /* clean white text */
+    --muted: #6f6556; /* aged stone */
+    --muted-2: #8a7e6a; /* heritage muted brown */
 
-    --border: rgba(245, 197, 66, 0.22);
+    --border: rgba(31, 27, 22, 0.14);
 
-    /* Gold */
-    --accent: #f5c542;
-    --accent-soft: rgba(245, 197, 66, 0.14);
+    /* Gold accent (royal but restrained) */
+    --accent: #c9a227; /* slightly muted gold */
+    --accent-soft: rgba(201, 162, 39, 0.18);
 
-    /* Palace red */
+    /* Palace red (heritage core) */
     --primary: #7a0f0f;
     --primary-hover: #8c1515;
-    --primary-soft: rgba(122, 15, 15, 0.2);
+    --primary-soft: rgba(122, 15, 15, 0.12);
 
-    --nav-bg: rgba(2, 2, 2, 0.75);
-    --focus: rgba(245, 197, 66, 0.35);
+    /* Navigation + focus */
+    --nav-bg: rgba(250, 247, 242, 0.85);
+    --focus: rgba(201, 162, 39, 0.45);
   }
 
   html,
@@ -37,7 +39,7 @@
 
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--primary);
     color: var(--text);
   }
 
@@ -52,7 +54,6 @@
   }
 }
 
-/* Back-compat if any old markup used this */
 .body {
   margin: 0;
   background: var(--bg);

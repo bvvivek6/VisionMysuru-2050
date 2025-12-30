@@ -67,7 +67,7 @@ const Select = (props) => {
   return (
     <select
       {...props}
-      className={`w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--text)] focus:border-[var(--accent)] focus:outline-none focus:ring-4 focus:ring-[var(--focus)] ${
+      className={`w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--button)] focus:border-[var(--accent)] focus:outline-none focus:ring-4 focus:ring-[var(--focus)] ${
         props.className ?? ""
       }`}
     />
@@ -76,7 +76,7 @@ const Select = (props) => {
 
 const Toggle = ({ active, onChange }) => {
   const tabs = [
-    { key: CATEGORY.COLLEGE, label: "College Students" },
+    { key: CATEGORY.COLLEGE, label: "Students" },
     { key: CATEGORY.STARTUP, label: "Startups" },
     { key: CATEGORY.NGO, label: "NGOs" },
   ];
@@ -267,14 +267,10 @@ const SubmitIdeaPage = () => {
       <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] ring-1 ring-[var(--border)]">
-              <FiMapPin />
-            </span>
             <div className="leading-tight">
               <div className="text-sm font-semibold text-[var(--text)]">
                 Vision Mysuru 2050
               </div>
-              <div className="text-xs text-[var(--muted)]">Idea Submission</div>
             </div>
           </Link>
 
@@ -300,10 +296,6 @@ const SubmitIdeaPage = () => {
                 Choose your category and submit a clear problem statement, your
                 solution, and expected impact for Mysuru district.
               </p>
-
-              <div className="mt-6">
-                <Toggle active={activeCategory} onChange={switchCategory} />
-              </div>
 
               <div className="mt-6 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6">
                 <div className="flex items-center gap-3">
@@ -337,6 +329,9 @@ const SubmitIdeaPage = () => {
             </div>
 
             <div className="lg:col-span-7">
+              <div className="mt-6">
+                <Toggle active={activeCategory} onChange={switchCategory} />
+              </div>
               <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
@@ -347,9 +342,6 @@ const SubmitIdeaPage = () => {
                       {pageTitle}
                     </div>
                   </div>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-3 py-1 text-xs font-semibold text-[var(--muted)]">
-                    <FiSend /> Submission Form
-                  </span>
                 </div>
 
                 {status.state === "error" ? (

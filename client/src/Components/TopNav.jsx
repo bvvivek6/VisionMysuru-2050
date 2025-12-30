@@ -12,7 +12,7 @@ export const TopNav = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur">
+    <header className="sticky top-0 z-50 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="leading-tight">
@@ -37,9 +37,9 @@ export const TopNav = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/submit"
-            className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--text)] ring-1 ring-[var(--border)] hover:bg-[var(--primary-hover)]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--button)] ring-1 ring-[var(--border)] hover:bg-[var(--primary-hover)]"
           >
-            Submit Idea <FiArrowRight />
+            Submit <FiArrowRight />
           </Link>
         </div>
       </div>
