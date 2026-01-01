@@ -263,7 +263,7 @@ const SubmitIdeaPage = () => {
       : "NGO Submission";
 
   return (
-    <div className="min-h-dvh dm-sans bg-[var(--bg)] text-[var(--text)]">
+    <div className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col  dm-sans bg-[var(--bg)] text-[var(--text)]">
       <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center gap-2">

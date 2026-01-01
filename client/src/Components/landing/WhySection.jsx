@@ -1,46 +1,54 @@
-import { FiAward, FiTarget, FiUsers } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import { Section } from "./Section.jsx";
+
+const points = [
+  {
+    label: "Context-driven challenges",
+    title: "Rooted in real district priorities",
+    desc: "Problem statements are derived from Mysuru’s on-ground civic and social needs, ensuring relevance, feasibility, and measurable public impact.",
+  },
+  {
+    label: "Guided refinement",
+    title: "Expert mentorship & institutional visibility",
+    desc: "Shortlisted ideas receive structured guidance from domain experts, with opportunities to present to decision-makers and partner organisations.",
+  },
+  {
+    label: "Beyond the event",
+    title: "Clear pathways for implementation",
+    desc: "Promising ideas are supported beyond ideation through pilot opportunities, partnerships, and potential funding channels.",
+  },
+];
 
 const WhySection = () => {
   return (
     <Section
       id="why"
-      eyebrow="Why this ideathon?"
-      title="A platform to convert ideas into impact"
+      eyebrow="Why this ideathon"
+      title="Designed for ideas that deserve to exist beyond slides"
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {[
-          {
-            icon: FiTarget,
-            title: "Real district priorities",
-            desc: "Ideas grounded in Mysuru’s needs with measurable outcomes and feasibility.",
-          },
-          {
-            icon: FiUsers,
-            title: "Mentorship + visibility",
-            desc: "Shortlisted teams get guidance to sharpen execution plans and pitches.",
-          },
-          {
-            icon: FiAward,
-            title: "Prizes + funding pathways",
-            desc: "Win exciting prizes and explore support from officials and partners.",
-          },
-        ].map((card) => (
+      <div className="grid gap-6 md:grid-cols-3">
+        {points.map((item, idx) => (
           <div
-            key={card.title}
-            className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] px-6 py-10"
+            key={item.title}
+            className="group relative rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 transition hover:border-[var(--accent)]"
           >
-            <div className="absolute -bottom-8 -right-5 inline-flex items-center justify-center overflow-hidden rounded-full bg-[var(--accent-soft)] p-4 opacity-80">
-              <card.icon className="h-30 w-30 text-[var(--accent)] opacity-60" />
+            {/* subtle index */}
+            <div className="mb-6 text-xs font-medium uppercase tracking-wide text-[var(--muted)]">
+              {String(idx + 1).padStart(2, "0")} · {item.label}
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-base font-semibold uppercase text-[var(--text)]">
-                {card.title}
-              </div>
-            </div>
+
+            <h3 className="text-lg font-semibold text-[var(--text)]">
+              {item.title}
+            </h3>
+
             <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-              {card.desc}
+              {item.desc}
             </p>
+
+            {/* quiet affordance */}
+            <div className="pointer-events-none absolute bottom-6 right-6 opacity-0 transition group-hover:opacity-100">
+              <FiArrowUpRight className="h-4 w-4 text-[var(--accent)]" />
+            </div>
           </div>
         ))}
       </div>

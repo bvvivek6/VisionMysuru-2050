@@ -2,55 +2,35 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    color-scheme: light;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
 
-    /* Mysuru Palace – Light Heritage Theme */
-    --bg: #fffefb; /* warm ivory */
-    --surface: #ffffff; /* clean white cards */
-    --surface-2: #f3ede3; /* subtle palace parchment */
+      /* Mysuru Palace – Dark Heritage Theme */
+      --bg: #0f0c08; /* palace night sky */
+      --surface: #16120d; /* dark carved stone */
+      --surface-2: #1d1812; /* layered heritage depth */
 
-    --text: #1f1b16; /* deep charcoal (not pure black) */
-    --button: #ffffff; /* clean white text */
-    --muted: #6f6556; /* aged stone */
-    --muted-2: #8a7e6a; /* heritage muted brown */
+      --text: #f4efe6; /* warm ivory text */
+      --button: #f4efe6;
+      --muted: #b9ae9b; /* aged gold stone */
+      --muted-2: #9f937e;
 
-    --border: rgba(31, 27, 22, 0.14);
+      --border: rgba(244, 239, 230, 0.12);
 
-    /* Gold accent (royal but restrained) */
-    --accent: #c9a227; /* slightly muted gold */
-    --accent-soft: rgba(201, 162, 39, 0.18);
+      /* Gold accent (glows softly in dark) */
+      --accent: #e0b84c;
+      --accent-soft: rgba(224, 184, 76, 0.22);
 
-    /* Palace red (heritage core) */
-    --primary: #7a0f0f;
-    --primary-hover: #8c1515;
-    --primary-soft: rgba(122, 15, 15, 0.12);
+      /* Palace red (deep royal wine) */
+      --primary: #8f1b1b;
+      --primary-hover: #a12626;
+      --primary-soft: rgba(143, 27, 27, 0.22);
 
-    /* Navigation + focus */
-    --nav-bg: rgba(250, 247, 242, 0.85);
-    --focus: rgba(201, 162, 39, 0.45);
-  }
-
-  html,
-  body,
-  #root {
-    height: 100%;
-  }
-
-  body {
-    margin: 0;
-    background: var(--primary);
-    color: var(--text);
-  }
-
-  ::selection {
-    background: var(--primary);
-    color: var(--text);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 2px;
+      /* Navigation + focus */
+      --nav-bg: rgba(18, 14, 9, 0.85);
+      --focus: rgba(224, 184, 76, 0.55);
+    }
   }
 }
 
