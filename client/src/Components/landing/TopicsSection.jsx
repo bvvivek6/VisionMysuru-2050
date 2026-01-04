@@ -21,14 +21,14 @@ const TopicsSection = () => {
       eyebrow="Focus areas"
       title="Thematic priorities for proposal submission"
     >
-      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {TOPICS.map((t, idx) => (
           <div
             key={idx}
-            className="group overflow-hidden rounded-xl border border-[var(--border)]
+            className="group overflow-hidden rounded-xl 
             bg-[var(--surface)] transition hover:border-[var(--accent)]"
           >
-            <div className="relative h-42 overflow-hidden">
+            <div className="relative h-48 overflow-hidden">
               <img
                 src={topicImages[t.title] ?? "/mysuru2.jpeg"}
                 alt=""
@@ -37,10 +37,10 @@ const TopicsSection = () => {
                 className="h-full w-full object-cover transition-transform duration-500
                 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/85 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-(--bg)/40 to-transparent" />
             </div>
 
-            <div className="p-4">
+            <div className="px-4 pb-8">
               <h3 className="text-base font-semibold text-[var(--text)]">
                 {t.title}
               </h3>

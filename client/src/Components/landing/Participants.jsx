@@ -6,12 +6,11 @@ const Participants = () => {
       title: "College Students",
       subtitle: "Innovation Challenge",
       image: "/students.jpg",
-      who: "Undergraduate and postgraduate students from engineering, management, arts, and science disciplines.",
+      who: "UG and PG students from engineering, management, arts, and science disciplines.",
       why: [
         'Recognition as "City Consultant" (certified by SDMIMD & partners)',
         "High-impact ideas may be adopted by the District Administration",
         "Mentorship from industry leaders at the Corporate Summit",
-        "Cash awards for top-ranked proposals",
       ],
     },
     {
@@ -52,7 +51,7 @@ const Participants = () => {
           return (
             <div
               key={c.title}
-              className="w-[85%] shrink-0 snap-start overflow-hidden rounded-xl border border-[var(--border)]
+              className="w-[85%] shrink-0 snap-start overflow-hidden rounded-xl 
               bg-[var(--surface)] transition hover:border-[var(--accent)]
               sm:w-[70%]
               md:w-[55%]
@@ -66,7 +65,7 @@ const Participants = () => {
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]/90" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]" />
               </div>
 
               <div className="px-4 py-4">
@@ -90,11 +89,10 @@ const Participants = () => {
                   <div className="text-xs font-semibold uppercase tracking-tight text-[var(--muted)]">
                     Why participate
                   </div>
-                  <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
+                  <ul className="mt-3 space-y-1 text-sm text-[var(--muted)]">
                     {c.why.map((p) => (
-                      <li key={p} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                        <span>{p}</span>
+                      <li key={p} className="flex gap-2">
+                        - <span>{p}</span>
                       </li>
                     ))}
                   </ul>

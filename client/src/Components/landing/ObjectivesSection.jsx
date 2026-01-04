@@ -38,9 +38,8 @@ const ObjectivesSection = () => {
         {CORE_OBJECTIVES.map((item, idx) => (
           <article
             key={item.title}
-            className="group relative overflow-hidden rounded-xl
-            border border-[var(--border)]
-            bg-[var(--surface)]
+            className="group relative overflow-hidden rounded-xl 
+              bg-[var(--surface)]
             px-6 py-8 transition hover:border-[var(--accent)]"
           >
             <h3 className="relative z-10 max-w-md text-2xl font-semibold tracking-tight text-[var(--text)]">
