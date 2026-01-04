@@ -3,27 +3,26 @@ import { Section } from "./Section.jsx";
 const CORE_OBJECTIVES = [
   {
     title: 'To Create a Neutral "Think-Tank"',
-    desc: "Establish a credible, non-partisan platform where academia, industry, and government converge to deliberate on Mysuru’s long-term urban challenges without procedural or bureaucratic friction.",
+    desc: "Create a non-partisan platform where academia, industry, and government collaborate on Mysuru’s long-term urban challenges.",
     outcome:
-      "Enables structured dialogue, cross-sector trust, and policy-ready insights grounded in research.",
+      "Enables informed dialogue, shared understanding, and research-backed policy inputs.",
   },
   {
     title: "To Bridge the Civic Data Gap",
-    desc: "Mobilise student participation to capture granular, hyper-local civic data that traditional surveys, reports, and top-down studies often fail to surface.",
+    desc: "Engage students to capture granular, hyper-local civic data often missed by conventional surveys.",
     outcome:
-      "Creates a living data layer that reflects on-ground realities across neighbourhoods and communities.",
+      "Builds a living data layer reflecting real conditions across neighbourhoods.",
   },
   {
     title: "To Foster Safe and Responsible Innovation",
-    desc: "Provide a controlled sandbox where bold ideas, emerging technologies, and unconventional approaches can be tested, refined, and stress-checked before real-world deployment.",
+    desc: "Provide a controlled environment to test bold ideas, technologies, and new approaches before deployment.",
     outcome:
-      "Reduces implementation risk while encouraging creativity and experimentation.",
+      "Encourages experimentation while reducing real-world implementation risk.",
   },
   {
     title: "To Institutionalise the Future",
-    desc: "Translate collective insights, validated ideas, and evidence-backed proposals into a formal white paper recognised by institutional and civic leadership.",
-    outcome:
-      "Ensures continuity, accountability, and long-term impact beyond individual events or cohorts.",
+    desc: "Convert validated insights and proposals into a formal, institutionally recognised white paper.",
+    outcome: "Ensures continuity, accountability, and long-term civic impact.",
   },
 ];
 

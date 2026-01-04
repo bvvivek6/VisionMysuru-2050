@@ -6,7 +6,7 @@ export const TopNav = () => {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    { label: "Why", href: "#why" },
+    { label: "About", href: "#about" },
     { label: "Participation", href: "#participation" },
     { label: "Topics", href: "#topics" },
     { label: "Timeline", href: "#timeline" },
