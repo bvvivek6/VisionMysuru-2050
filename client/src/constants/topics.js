@@ -1,8 +1,4 @@
 import {
-  FiArrowRight,
-  FiAward,
-  FiCalendar,
-  FiChevronDown,
   FiCompass,
   FiCpu,
   FiFeather,
@@ -14,86 +10,113 @@ import {
 } from "react-icons/fi";
 const TOPICS = [
   {
-    icon: FiCpu,
-    title: "Smart & Sustainable City",
+    icon: FiMapPin,
+    title: "Urban Infrastructure & Mobility",
     points: [
-      "Mobility, traffic, public safety",
-      "Energy efficiency, waste, water",
-      "Citizen services & e-governance",
+      "Public transport & last-mile connectivity",
+      "Traffic, walkability & road safety",
+      "Core civic infrastructure upgrades",
     ],
   },
   {
     icon: FiGlobe,
-    title: "Environment & Climate Resilience",
+    title: "Environmental Sustainability",
     points: [
-      "Urban greenery, lake rejuvenation",
-      "Flood/heat preparedness",
-      "Low-carbon solutions",
+      "Water, waste & circular economy",
+      "Urban greenery & biodiversity",
+      "Clean energy & low-carbon solutions",
     ],
   },
   {
     icon: FiUsers,
-    title: "Inclusive Growth & Livelihoods",
+    title: "Economic Development",
     points: [
-      "Skill development & jobs",
-      "Women/youth empowerment",
-      "Accessible public spaces",
+      "Jobs, skills & entrepreneurship",
+      "MSME growth & innovation ecosystems",
+      "Investment, productivity & livelihoods",
     ],
   },
   {
-    icon: FiFeather,
-    title: "Culture, Tourism & Heritage",
+    icon: FiCpu,
+    title: "Digital Governance & Smart City",
     points: [
-      "Heritage-led development",
-      "Tourism experiences & trails",
-      "Creative economy",
+      "Citizen services & e-governance",
+      "Data-driven operations & transparency",
+      "Smart infrastructure & platforms",
     ],
   },
   {
     icon: FiLayers,
-    title: "Health, Education & Wellbeing",
+    title: "Education & Healthcare",
     points: [
-      "Preventive health & outreach",
-      "EdTech & skilling pathways",
-      "Mental health & sports",
+      "Quality education & skilling pathways",
+      "Public health, prevention & access",
+      "Wellbeing & care delivery innovation",
+    ],
+  },
+  {
+    icon: FiFeather,
+    title: "Heritage Conservation",
+    points: [
+      "Protect and restore heritage assets",
+      "Heritage-sensitive urban development",
+      "Community stewardship & awareness",
+    ],
+  },
+  {
+    icon: FiUsers,
+    title: "Social Equity & Inclusion",
+    points: [
+      "Accessible public spaces and services",
+      "Support for vulnerable communities",
+      "Inclusive opportunities for all",
+    ],
+  },
+  {
+    icon: FiTarget,
+    title: "Disaster Resilience",
+    points: [
+      "Flood/heat preparedness",
+      "Early warning & response systems",
+      "Resilient infrastructure planning",
     ],
   },
   {
     icon: FiCompass,
-    title: "Rural–Urban Linkages",
+    title: "Tourism & Culture",
     points: [
-      "Agri value chains",
-      "Local entrepreneurship",
-      "Last-mile logistics",
+      "Tourism experiences, trails & events",
+      "Creative economy and local identity",
+      "Sustainable visitor management",
     ],
   },
 ];
 
 const TIMELINE = [
   {
-    title: "Registrations Open",
-    date: "Jan 10, 2026",
-    detail: "Choose a track and submit your intent to participate.",
+    title: "Registration Opens",
+    date: "Feb 01, 2026",
+    detail: "Registrations open for Mysuru Vision 2050.",
   },
   {
-    title: "Idea Submission",
-    date: "Jan 10 – Feb 10, 2026",
-    detail: "Submit your problem statement, solution, and impact plan.",
+    title: "Submission Deadline",
+    date: "Feb 20, 2026",
+    detail: "Last date to submit your idea.",
   },
   {
-    title: "Shortlisting",
-    date: "Feb 12 – Feb 18, 2026",
-    detail: "Evaluation by domain experts and district officials.",
+    title: "The Elimination Round",
+    date: "Feb 21, 2026",
+    detail: "Shortlisted teams present for elimination round evaluation.",
   },
   {
-    title: "Mentorship Sprint",
-    date: "Feb 20 – Mar 01, 2026",
-    detail: "Refine your pitch deck, prototype, and execution roadmap.",
+    title: "The Corporate Summit",
+    date: "Feb 22, 2026",
+    detail: "Engage with industry leaders and mentors at the summit.",
   },
   {
-    title: "Demo Day (District Finals)",
-    date: "Mar 07, 2026",
-    detail: "Pitch to jury, officials, and partners; win prizes and funding.",
+    title: "The Grand Conclave & Handover",
+    date: "Feb 23, 2026",
+    detail: "Final conclave and formal handover of outcomes.",
   },
 ];
 export { TOPICS, TIMELINE };

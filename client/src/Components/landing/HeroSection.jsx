@@ -28,7 +28,7 @@ const HeroSection = () => {
             implementation.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-20 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/submit"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--primary-hover)]"

@@ -4,11 +4,13 @@ import { FiArrowRight } from "react-icons/fi";
 import { TIMELINE } from "../../constants/topics";
 import { Section } from "./Section.jsx";
 
-const useInView = (options = {}) => {
+const useInView = () => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -16,46 +18,80 @@ const useInView = (options = {}) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.2, ...options }
+      { threshold: 0.2 }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return [ref, visible];
 };
 
-const TimelineItem = ({ step }) => {
+const TimelineItem = ({ step, index }) => {
   const [ref, visible] = useInView();
+  const isLeft = index % 2 === 0;
 
   return (
-    <div
-      ref={ref}
-      className={`relative pl-10 transition-all duration-700 ease-out
-        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-      `}
-    >
-      {/* dot */}
+    <div ref={ref} className="relative flex min-h-[140px]">
       <span
-        className={`absolute left-[-3px] top-2 h-3.5 w-3.5 rounded-full border-2 transition-colors
+        className={`absolute top-1/2 -translate-y-1/2
+          left-2.5 md:left-1/2 md:-translate-x-1/2
+          h-4 w-4 rounded-full z-10 transition-all duration-500
           ${
             visible
-              ? "bg-[var(--accent)] border-[var(--accent)]"
-              : "bg-[var(--surface)] border-[var(--border)]"
-          }
-        `}
+              ? "bg-[var(--accent)] shadow-[0_0_0_8px_var(--accent-soft)] scale-110"
+              : "bg-[var(--surface)] border border-[var(--border)]"
+          }`}
       />
 
-      <div className="text-xs font-medium uppercase tracking-wide text-[var(--muted)]">
-        {step.date}
-      </div>
+      <div className="flex w-full">
+        <div
+          className={`hidden md:flex w-1/2 ${
+            isLeft ? "justify-end pr-14" : ""
+          }`}
+        >
+          {isLeft && <Card step={step} visible={visible} align="right" />}
+        </div>
 
-      <h3 className="mt-1 text-sm font-semibold text-[var(--text)]">
+        <div
+          className={`hidden md:flex w-1/2 ${
+            !isLeft ? "justify-start pl-14" : ""
+          }`}
+        >
+          {!isLeft && <Card step={step} visible={visible} />}
+        </div>
+
+        <div className="md:hidden w-full pl-10">
+          <Card step={step} visible={visible} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Card = ({ step, visible, align }) => {
+  return (
+    <div
+      className={`max-w-md w-full rounded-2xl border border-[var(--border)]
+        bg-[var(--surface)]/45 backdrop-blur p-4
+        transition-all duration-700 ease-out
+        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+        ${align === "right" ? "text-right" : "text-left"}
+      `}
+    >
+      <span
+        className="inline-block mb-2 rounded-full border border-[var(--border)]
+        bg-[var(--surface-2)] px-3 py-1 text-xs font-semibold text-[var(--muted)]"
+      >
+        {step.date}
+      </span>
+
+      <h3 className="mt-2 text-lg font-semibold text-[var(--text)]">
         {step.title}
       </h3>
 
-      <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+      <p className="mt-2 text-sm font-semibold text-[var(--muted)]">
         {step.detail}
       </p>
     </div>
@@ -68,36 +104,36 @@ const TimelineSection = () => {
       id="timeline"
       eyebrow="Process"
       title="Program timeline and milestones"
+      fullWidth
     >
-      {/* timeline */}
-      <div className="relative mx-auto max-w-3xl">
-        {/* vertical line */}
-        <div className="absolute left-1 top-0 h-full w-px bg-[var(--border)]" />
+      <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden">
+        <img
+          src="/mysurutimeline.jpg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
-        <div className="space-y-12">
-          {TIMELINE.map((step) => (
-            <TimelineItem key={step.title} step={step} />
-          ))}
-        </div>
-      </div>
+        <div
+          className="absolute inset-0 bg-gradient-to-b
+          from-[var(--bg)]
+          via-[var(--bg)]/20
+          to-[var(--bg)]"
+        />
 
-      {/* CTA – calm & institutional */}
-      <div className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5">
-        <div>
-          <div className="text-sm font-semibold text-[var(--text)]">
-            Submissions are open
+        <div className="relative max-w-7xl mx-auto px-6 py-24">
+          <div
+            className="absolute top-0 h-full w-1
+            left-10 md:left-1/2 md:-translate-x-1/2
+            bg-gradient-to-b from-transparent via-[var(--accent)] to-transparent"
+          />
+
+          <div className="space-y-8">
+            {TIMELINE.map((step, index) => (
+              <TimelineItem key={step.title} step={step} index={index} />
+            ))}
           </div>
-          <div className="text-sm text-[var(--muted)]">
-            Early submissions can be refined during the review phase.
-          </div>
         </div>
-
-        <Link
-          to="/submit"
-          className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-2.5 text-sm font-medium text-[var(--text)] transition hover:border-[var(--accent)]"
-        >
-          Submit proposal <FiArrowRight />
-        </Link>
       </div>
     </Section>
   );

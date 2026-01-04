@@ -2,64 +2,65 @@ import { Link } from "react-router-dom";
 
 const FooterSection = () => {
   const quickLinks = [
-    { label: "About the Initiative", href: "#mysuru", kind: "anchor" },
-    { label: "Objectives", href: "#objectives", kind: "anchor" },
-    { label: "Participation", href: "#faqs", kind: "anchor" },
-    { label: "Registration", href: "/submit", kind: "route" },
-    { label: "Resources", href: "#faqs", kind: "anchor" },
-    { label: "Rules & Regulations", href: "#faqs", kind: "anchor" },
-    { label: "Submissions", href: "/submit", kind: "route" },
-    { label: "Coordinators", href: "#faqs", kind: "anchor" },
-    { label: "Contact Us", href: "#contact", kind: "anchor" },
+    { label: "About the initiative", href: "#mysuru", kind: "anchor" },
+    { label: "Core objectives", href: "#objectives", kind: "anchor" },
+    { label: "Participation", href: "#participation", kind: "anchor" },
+    { label: "Rules & regulations", href: "/rules", kind: "route" },
+    { label: "Submission portal", href: "/submit", kind: "route" },
+    { label: "Contact", href: "#contact", kind: "anchor" },
   ];
 
   return (
     <footer
       id="contact"
-      className="border-t border-[var(--border)] bg-[var(--surface)]"
+      className="border-t border-[var(--border)] bg-[var(--bg)]"
     >
-      <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
+        <div className="grid gap-12 md:grid-cols-3">
           <div>
-            <div className="text-sm font-semibold text-[var(--text)]">
-              About
+            <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
+              Mysuru Vision 2050
             </div>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              Mysuru Vision 2050 is a strategic city-level initiative aimed at
-              sustainable development and technological advancement for Mysuru.
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-[var(--muted)]">
+              A city-scale strategic initiative focused on sustainable growth,
+              evidence-based policy, and long-term urban resilience for Mysuru.
             </p>
           </div>
-          <div>
-            <div className="text-sm font-semibold text-[var(--text)]">
-              Quick links
+
+          <nav>
+            <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
+              Navigation
             </div>
-            <div className="mt-2 space-y-1 text-sm">
+            <ul className="mt-4 space-y-2 text-sm">
               {quickLinks.map((item) =>
                 item.kind === "route" ? (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className="block text-[var(--muted)] hover:text-[var(--accent)]"
-                  >
-                    {item.label}
-                  </Link>
+                  <li key={item.label}>
+                    <Link
+                      to={item.href}
+                      className="text-[var(--muted)] transition hover:text-[var(--accent)]"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
                 ) : (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block text-[var(--muted)] hover:text-[var(--accent)]"
-                  >
-                    {item.label}
-                  </a>
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="text-[var(--muted)] transition hover:text-[var(--accent)]"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
                 )
               )}
-            </div>
-          </div>
+            </ul>
+          </nav>
+
           <div>
-            <div className="text-sm font-semibold text-[var(--text)]">
+            <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
               Contact
             </div>
-            <div className="mt-2 space-y-1 text-sm text-[var(--muted)]">
+            <div className="mt-4 space-y-2 text-sm text-[var(--muted)]">
               <div>SDMIMD, Mysuru, Karnataka, India</div>
               <a
                 href="mailto:vision2050@sdmimd.ac.in"
@@ -77,9 +78,9 @@ const FooterSection = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-[var(--border)] pt-6 text-xs text-[var(--muted-2)] sm:flex-row sm:items-center sm:justify-between">
-          <div>© 2026 Mysuru Vision 2050. All rights reserved.</div>
-          <div>Powered by SDMIMD | Government of Karnataka Initiative</div>
+        <div className="mt-14 flex flex-col gap-3 border-t border-[var(--border)] pt-6 text-xs text-[var(--muted-2)] sm:flex-row sm:items-center sm:justify-between">
+          <div>© 2026 Mysuru Vision 2050</div>
+          <div>An initiative supported by SDMIMD · Government of Karnataka</div>
         </div>
       </div>
     </footer>

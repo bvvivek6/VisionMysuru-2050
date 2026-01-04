@@ -1,29 +1,81 @@
+import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { FAQS } from "../../constants/faqs";
 import { Section } from "./Section.jsx";
 
 const FaqsSection = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (idx) => {
+    setOpenIndex((prev) => (prev === idx ? null : idx));
+  };
+
   return (
     <Section id="faqs" eyebrow="FAQs" title="Frequently asked questions">
-      <div className="grid gap-5 lg:grid-cols-2">
-        {FAQS.map((f) => (
-          <details
-            key={f.q}
-            className="group rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6"
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-              <span className="text-sm font-semibold text-[var(--text)]">
-                {f.q}
-              </span>
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--muted)] ring-1 ring-[var(--border)] group-open:bg-[var(--accent-soft)] group-open:text-[var(--accent)]">
-                <FiChevronDown className="transition-transform group-open:rotate-180" />
-              </span>
-            </summary>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
-              {f.a}
-            </p>
-          </details>
-        ))}
+      <div className="mx-auto  space-y-3">
+        {FAQS.map((f, idx) => {
+          const isOpen = openIndex === idx;
+
+          return (
+            <div
+              key={f.q}
+              className={`rounded-2xl border transition
+                ${
+                  isOpen
+                    ? "border-[var(--accent)] bg-[var(--surface)]"
+                    : "border-[var(--border)] bg-[var(--surface)]"
+                }`}
+            >
+              <button
+                onClick={() => toggle(idx)}
+                aria-expanded={isOpen}
+                className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left"
+              >
+                <div>
+                  <div className="mb-1 text-xs font-medium uppercase tracking-wide text-[var(--muted)]">
+                    Question {String(idx + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-base font-semibold leading-snug text-[var(--text)]">
+                    {f.q}
+                  </h3>
+                </div>
+
+                <span
+                  className={`mt-1 inline-flex h-8 w-8 flex-none items-center justify-center
+                    rounded-full border transition
+                    ${
+                      isOpen
+                        ? "border-[var(--accent)] text-[var(--accent)]"
+                        : "border-[var(--border)] text-[var(--muted)]"
+                    }`}
+                >
+                  <FiChevronDown
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </span>
+              </button>
+
+              <div
+                className={`grid transition-all duration-300 ease-out
+                  ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="border-t border-[var(--border)] px-6 py-4">
+                    <p className="text-sm leading-relaxed text-[var(--muted)]">
+                      {f.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </Section>
   );
