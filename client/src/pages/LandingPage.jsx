@@ -8,10 +8,11 @@ import FooterSection from "../Components/landing/FooterSection.jsx";
 import Participants from "../Components/landing/Participants.jsx";
 import About from "../Components/landing/About.jsx";
 import Sponsors from "../Components/landing/Sponsors.jsx";
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
   return (
-    <div className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]">
+    <motion.div className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]">
       <TopNav />
       <HeroSection />
       <About />
@@ -22,7 +23,7 @@ const LandingPage = () => {
       <TimelineSection />
       <FaqsSection />
       <FooterSection />
-    </div>
+    </motion.div>
   );
 };
 

@@ -43,7 +43,7 @@ const LogoCard = ({ name, src }) => {
 const Sponsors = () => {
   return (
     <Section id="sponsors" eyebrow="Partners" title="Sponsors & Partners">
-      <div className="mt-8 overflow-hidden">
+      <div className="verflow-hidden">
         <div className="marquee">
           <div className="marquee__track">
             {[...GROUPS, ...GROUPS].map((group, idx) => (

@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiCalendar } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[96vh] overflow-hidden">
+    <section className="relative min-h-[92vh] overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
-          src="/mysuru2.jpeg"
+        <motion.img
+          src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551010/mysuru2_vsbpnf.jpg"
           alt="Future vision of Mysuru city"
           className="h-full w-full scale-x-[-1] object-cover"
+          initial={{ scale: 1.3 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1 }}
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/40 to-red-600/10" />
       </div>
@@ -28,7 +33,7 @@ const HeroSection = () => {
             implementation.
           </p>
 
-          <div className="mt-20 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-25 md:mt-20 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/submit"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--primary-hover)]"

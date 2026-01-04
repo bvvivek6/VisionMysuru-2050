@@ -21,7 +21,7 @@ const FooterSection = () => {
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
               <span className="text-xl font-bold tracking-tighter text-white uppercase">
-                Mysuru <span className="text-yellow-400">2050</span>
+                MysuruVisison <span className="text-yellow-400">2050</span>
               </span>
             </div>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-zinc-400">
