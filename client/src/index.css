@@ -1,42 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Darker+Grotesque:wght@300..900&family=Oswald:wght@200..700&display=swap");
 @import "tailwindcss";
-
 @layer base {
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
+  :root {
+    color-scheme: light;
 
-      /* Mysuru Palace – Dark Heritage Theme */
-      --bg: #0f0c08; /* palace night sky */
-      --surface: #16120d; /* dark carved stone */
-      --surface-2: #1d1812; /* layered heritage depth */
+    --bg: #fffefc;
+    --surface: #ffffff;
+    --surface-2: #f4efe6;
 
-      --text: #f4efe6; /* warm ivory text */
-      --button: #f4efe6;
-      --muted: #b9ae9b; /* aged gold stone */
-      --muted-2: #9f937e;
+    --text: #1f140c;
+    --button: #ffffff;
+    --muted: #5b4a3a;
+    --muted-2: #7a6a58;
 
-      --border: rgba(244, 239, 230, 0.12);
+    --border: rgba(31, 20, 12, 0.12);
 
-      /* Gold accent (glows softly in dark) */
-      --accent: #e0b84c;
-      --accent-soft: rgba(224, 184, 76, 0.22);
+    --accent: #b07c12;
+    --accent-soft: rgba(176, 124, 18, 0.18);
 
-      /* Palace red (deep royal wine) */
-      --primary: #8f1b1b;
-      --primary-hover: #a12626;
-      --primary-soft: rgba(143, 27, 27, 0.22);
+    --primary: #8f1b1b;
+    --primary-hover: #a12626;
+    --primary-soft: rgba(143, 27, 27, 0.14);
 
-      /* Navigation + focus */
-      --nav-bg: rgba(18, 14, 9, 0.85);
-      --focus: rgba(224, 184, 76, 0.55);
-    }
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --focus: rgba(176, 124, 18, 0.35);
   }
 }
 
-.body {
+body {
   margin: 0;
-  background: var(--bg);
+  background: BLACK;
   color: var(--text);
 }
 

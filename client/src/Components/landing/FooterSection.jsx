@@ -1,17 +1,32 @@
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiCompass, FiLayers } from "react-icons/fi";
 
 const FooterSection = () => {
+  const quickLinks = [
+    { label: "About the Initiative", href: "#mysuru", kind: "anchor" },
+    { label: "Objectives", href: "#objectives", kind: "anchor" },
+    { label: "Participation", href: "#faqs", kind: "anchor" },
+    { label: "Registration", href: "/submit", kind: "route" },
+    { label: "Resources", href: "#faqs", kind: "anchor" },
+    { label: "Rules & Regulations", href: "#faqs", kind: "anchor" },
+    { label: "Submissions", href: "/submit", kind: "route" },
+    { label: "Coordinators", href: "#faqs", kind: "anchor" },
+    { label: "Contact Us", href: "#contact", kind: "anchor" },
+  ];
+
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--surface)]">
+    <footer
+      id="contact"
+      className="border-t border-[var(--border)] bg-[var(--surface)]"
+    >
       <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="text-sm font-semibold text-[var(--text)]">
-              Vision Mysuru 2050
+              About
             </div>
             <p className="mt-2 text-sm text-[var(--muted)]">
-              District-level ideathon for students, startups, and NGOs.
+              Mysuru Vision 2050 is a strategic city-level initiative aimed at
+              sustainable development and technological advancement for Mysuru.
             </p>
           </div>
           <div>
@@ -19,14 +34,22 @@ const FooterSection = () => {
               Quick links
             </div>
             <div className="mt-2 space-y-1 text-sm">
-              {["#why", "#topics", "#timeline", "#objectives", "#faqs"].map(
-                (href) => (
-                  <a
-                    key={href}
-                    href={href}
+              {quickLinks.map((item) =>
+                item.kind === "route" ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
                     className="block text-[var(--muted)] hover:text-[var(--accent)]"
                   >
-                    {href.replace("#", "").toUpperCase()}
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block text-[var(--muted)] hover:text-[var(--accent)]"
+                  >
+                    {item.label}
                   </a>
                 )
               )}
@@ -34,46 +57,29 @@ const FooterSection = () => {
           </div>
           <div>
             <div className="text-sm font-semibold text-[var(--text)]">
-              Participate
+              Contact
             </div>
-            <div className="mt-2 space-y-1 text-sm">
-              {["College Students", "Startups", "NGOs"].map((t) => (
-                <div key={t} className="text-[var(--muted)]">
-                  {t}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-sm font-semibold text-[var(--text)]">
-              Submit
-            </div>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              Share your idea and get a chance to win prizes and explore funding
-              support.
-            </p>
-            <div className="mt-3">
-              <Link
-                to="/submit"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--text)] ring-1 ring-[var(--border)] hover:bg-[var(--primary-hover)]"
+            <div className="mt-2 space-y-1 text-sm text-[var(--muted)]">
+              <div>SDMIMD, Mysuru, Karnataka, India</div>
+              <a
+                href="mailto:vision2050@sdmimd.ac.in"
+                className="block hover:text-[var(--accent)]"
               >
-                Submit Idea <FiArrowRight />
-              </Link>
+                vision2050@sdmimd.ac.in
+              </a>
+              <a
+                href="tel:+918212425820"
+                className="block hover:text-[var(--accent)]"
+              >
+                +91 821 2425 820
+              </a>
             </div>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-[var(--border)] pt-6 text-xs text-[var(--muted-2)] sm:flex-row sm:items-center sm:justify-between">
-          <div>© {new Date().getFullYear()} Vision Mysuru 2050</div>
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1">
-              <FiCompass /> Mysuru District
-            </span>
-            <span className="text-[var(--muted-2)]">•</span>
-            <span className="inline-flex items-center gap-1">
-              <FiLayers /> Ideathon
-            </span>
-          </div>
+          <div>© 2026 Mysuru Vision 2050. All rights reserved.</div>
+          <div>Powered by SDMIMD | Government of Karnataka Initiative</div>
         </div>
       </div>
     </footer>
