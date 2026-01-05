@@ -12,7 +12,6 @@ export const TopNav = () => {
     { label: "Timeline", href: "#timeline" },
     { label: "Objectives", href: "#objectives" },
     { label: "FAQs", href: "#faqs" },
-    // { label: "Rules & Regulations", href: "/rules" },
   ];
 
   return (

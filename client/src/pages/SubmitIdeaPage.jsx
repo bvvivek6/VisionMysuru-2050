@@ -1,23 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiCheckCircle, FiTrash, FiPlus } from "react-icons/fi";
-import RulesAndRegulations from "../Components/RulesAndRegulations";
-import FooterSection from "../Components/landing/FooterSection";
-
-const CATEGORY = {
-  COLLEGE: "college",
-  STARTUP: "startup",
-  NGO: "ngo",
-};
-
-const TOPIC_OPTIONS = [
-  "Smart & Sustainable City",
-  "Environment & Climate Resilience",
-  "Inclusive Growth & Livelihoods",
-  "Culture, Tourism & Heritage",
-  "Health, Education & Wellbeing",
-  "Rural–Urban Linkages",
-];
+import { motion } from "framer-motion";
+import { FiCheckCircle, FiTrash, FiPlus } from "react-icons/fi";
+import RulesAndRegulations from "../Components/Submission/RulesAndRegulations";
+import FooterSection from "../Components/FooterSection";
+import SubmissionHeader from "../Components/Submission/SubmissionHeader";
+import SubmissionNav from "../Components/Submission/SubmissionNav";
+import { TOPIC_OPTIONS, CATEGORY } from "../constants/content";
 
 const MAX_PDF_BYTES = 2 * 1024 * 1024;
 
@@ -70,7 +58,7 @@ const Toggle = ({ active, onChange }) => {
   ];
 
   return (
-    <div className="inline-flex w-full flex-row gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-2 sm:flex-row">
+    <div className="inline-flex w-full flex-row gap-2  sm:flex-row">
       {tabs.map((t) => (
         <button
           key={t.key}
@@ -247,44 +235,19 @@ const SubmitIdeaPage = () => {
   };
 
   return (
-    <div className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]">
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link to="/" className="text-sm font-bold">
-            Vision Mysuru 2050
-          </Link>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-4 py-2 text-sm font-semibold hover:bg-[var(--surface-2)]"
-          >
-            <FiArrowLeft /> Home
-          </Link>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
-        <div className="relative mb-10 h-64 w-full overflow-hidden  sm:h-72">
-          <img
-            src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551078/idea_bfi7z5.jpg"
-            alt="Submit Idea"
-            className="absolute inset-0 h-full transform scale-x-[-1] w-full object-cover"
-          />
-          <div className="absolute left-0 top-0 h-full w-15 bg-gradient-to-r from-[var(--bg)] to-transparent" />
-          <div className="absolute right-0 top-0 h-full w-15 bg-gradient-to-l from-[var(--bg)] to-transparent" />
-          <div className="absolute top-0 h-15 w-full bg-gradient-to-b from-[var(--bg)] to-transparent" />
-          <div className="absolute bottom-0  h-15 w-full bg-gradient-to-t from-[var(--bg)] to-transparent" />
-
-          <div className="relative z-10 flex h-full flex-col justify-center pb-13 pl-4 md:px-8 max-w-lg">
-            <h1 className="text-3xl font-bold text-black sm:text-4xl md:text-5xl">
-              Submit your <br /> Idea
-            </h1>
-          </div>
-        </div>
+    <motion.div
+      className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <SubmissionNav />
+      <main className=" ">
+        <SubmissionHeader />
         <RulesAndRegulations />
-
-        <div className="lg:col-span-7 mt-10">
+        <div className=" max-w-6xl mx-auto my-10 px-4 md:px-0">
           <Toggle active={activeCategory} onChange={switchCategory} />
-          <div className="mt-3 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+          <div className="mt-3 rounded-3xl border-y-4 border border-[var(--accent)] p-6 sm:p-8">
             {status.message && (
               <div
                 className={`mb-6 rounded-xl p-4 text-sm ${
@@ -496,7 +459,7 @@ const SubmitIdeaPage = () => {
         </div>
       </main>
       <FooterSection />
-    </div>
+    </motion.div>
   );
 };
 

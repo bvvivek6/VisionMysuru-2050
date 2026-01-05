@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="relative min-h-[92vh] overflow-hidden">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute border-b-6 border-[var(--accent)] inset-0 z-0">
         <motion.img
           src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551010/mysuru2_vsbpnf.jpg"
           alt="Future vision of Mysuru city"
           className="h-full w-full scale-x-[-1] object-cover"
-          initial={{ scale: 1.3 }}
+          initial={{ scale: 1.2 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/40 to-red-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/10 to-red-600/10" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 sm:px-6">

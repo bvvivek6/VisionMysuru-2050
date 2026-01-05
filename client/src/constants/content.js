@@ -8,6 +8,7 @@ import {
   FiTarget,
   FiUsers,
 } from "react-icons/fi";
+
 const TOPICS = [
   {
     icon: FiMapPin,
@@ -119,4 +120,82 @@ const TIMELINE = [
     detail: "Final conclave and formal handover of outcomes.",
   },
 ];
-export { TOPICS, TIMELINE };
+
+const CATEGORY = {
+  COLLEGE: "college",
+  STARTUP: "startup",
+  NGO: "ngo",
+};
+
+const TOPIC_OPTIONS = [
+  "Smart & Sustainable City",
+  "Environment & Climate Resilience",
+  "Inclusive Growth & Livelihoods",
+  "Culture, Tourism & Heritage",
+  "Health, Education & Wellbeing",
+  "Rural–Urban Linkages",
+];
+
+const CORE_OBJECTIVES = [
+  {
+    title: 'To Create a Neutral "Think-Tank"',
+    desc: "Create a non-partisan platform where academia, industry, and government collaborate on Mysuru’s long-term urban challenges.",
+    outcome:
+      "Enables informed dialogue, shared understanding, and research-backed policy inputs.",
+  },
+  {
+    title: "To Bridge the Civic Data Gap",
+    desc: "Engage students to capture granular, hyper-local civic data often missed by conventional surveys.",
+    outcome:
+      "Builds a living data layer reflecting real conditions across neighbourhoods.",
+  },
+  {
+    title: "To Foster Safe and Responsible Innovation",
+    desc: "Provide a controlled environment to test bold ideas, technologies, and new approaches before deployment.",
+    outcome:
+      "Encourages experimentation while reducing real-world implementation risk.",
+  },
+  {
+    title: "To Institutionalise the Future",
+    desc: "Convert validated insights and proposals into a formal, institutionally recognised white paper.",
+    outcome: "Ensures continuity, accountability, and long-term civic impact.",
+  },
+];
+
+const TEAM_COMPOSITION = [
+  "2 to 3 members per team",
+  "Students or recognised entities based in Mysuru",
+  "Inter-college / institution teams permitted",
+];
+
+const CHALLENGE_FORMAT = [
+  {
+    title: "The Photo",
+    desc: "Geotagged photo of a real civic issue.",
+  },
+  {
+    title: "The Solution",
+    desc: "Concise abstract (max 100 words).",
+  },
+  {
+    title: "The Pitch",
+    desc: "3-minute roadmap for shortlisted teams.",
+  },
+];
+
+const DISQUALIFICATION = [
+  "Plagiarised ideas",
+  "Stock or AI-generated images",
+  "Late submissions",
+];
+
+export {
+  TOPICS,
+  TIMELINE,
+  CATEGORY,
+  TOPIC_OPTIONS,
+  CORE_OBJECTIVES,
+  TEAM_COMPOSITION,
+  CHALLENGE_FORMAT,
+  DISQUALIFICATION,
+};

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { Section } from "./Section.jsx";
-import { TOPICS, TIMELINE } from "../../constants/topics.js";
 
 const About = () => {
   return (

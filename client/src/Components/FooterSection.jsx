@@ -14,7 +14,7 @@ const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden border-2 rounded-b-2xl border-[var(--bg)] bg-[#050505] pt-24 pb-12 text-zinc-300"
+      className="relative overflow-hidden border-2 rounded-4xl border-[var(--bg)] bg-[#050505] pt-24 pb-12 text-zinc-300"
     >
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">

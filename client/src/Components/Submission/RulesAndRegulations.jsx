@@ -1,35 +1,13 @@
 import { FiAlertCircle, FiUsers, FiMapPin, FiCheck } from "react-icons/fi";
-
-const TEAM_COMPOSITION = [
-  "2 to 3 members per team",
-  "Students or recognised entities based in Mysuru",
-  "Inter-college / institution teams permitted",
-];
-
-const CHALLENGE_FORMAT = [
-  {
-    title: "The Photo",
-    desc: "Geotagged photo of a real civic issue.",
-  },
-  {
-    title: "The Solution",
-    desc: "Concise abstract (max 100 words).",
-  },
-  {
-    title: "The Pitch",
-    desc: "3-minute roadmap for shortlisted teams.",
-  },
-];
-
-const DISQUALIFICATION = [
-  "Plagiarised ideas",
-  "Stock or AI-generated images",
-  "Late submissions",
-];
+import {
+  TEAM_COMPOSITION,
+  CHALLENGE_FORMAT,
+  DISQUALIFICATION,
+} from "../../constants/content.js";
 
 const RulesAndRegulations = () => {
   return (
-    <section className="m-1 md:m-4 dm-sans">
+    <section className="m-1 md:m-4 px-4  dm-sans">
       <main className="mx-auto max-w-6xl">
         <header className="mb-4">
           <span

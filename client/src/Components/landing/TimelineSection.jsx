@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi";
-import { TIMELINE } from "../../constants/topics";
+import { TIMELINE } from "../../constants/content.js";
 import { Section } from "./Section.jsx";
 
 const useInView = () => {
@@ -28,7 +26,7 @@ const useInView = () => {
   return [ref, visible];
 };
 
-const TimelineItem = ({ step, index }) => {
+const TimelineItem = ({ step, index, isLast }) => {
   const [ref, visible] = useInView();
   const isLeft = index % 2 === 0;
 
@@ -51,7 +49,14 @@ const TimelineItem = ({ step, index }) => {
             isLeft ? "justify-end pr-14" : ""
           }`}
         >
-          {isLeft && <Card step={step} visible={visible} align="right" />}
+          {isLeft && (
+            <Card
+              step={step}
+              visible={visible}
+              align="right"
+              isSpecial={isLast}
+            />
+          )}
         </div>
 
         <div
@@ -59,39 +64,81 @@ const TimelineItem = ({ step, index }) => {
             !isLeft ? "justify-start pl-14" : ""
           }`}
         >
-          {!isLeft && <Card step={step} visible={visible} />}
+          {!isLeft && <Card step={step} visible={visible} isSpecial={isLast} />}
         </div>
 
         <div className="md:hidden w-full pl-10">
-          <Card step={step} visible={visible} />
+          <Card step={step} visible={visible} isSpecial={isLast} />
         </div>
       </div>
     </div>
   );
 };
 
-const Card = ({ step, visible, align }) => {
+const Card = ({ step, visible, align, isSpecial }) => {
   return (
     <div
-      className={`max-w-md w-full rounded-2xl border border-[var(--border)]
-        bg-[var(--surface)]/45 backdrop-blur p-4
-        transition-all duration-700 ease-out
+      className={`
+        relative max-w-md w-full rounded-2xl p-5
+        backdrop-blur transition-all duration-700 ease-out
+        border
+        ${
+          isSpecial
+            ? `
+              bg-gradient-to-br
+              from-white
+              via-yellow-500/35
+              to-orange-400/35
+              border-[var(--accent)]
+            `
+            : `
+              bg-[var(--surface)]/80
+              border-[var(--border)]
+              shadow-sm
+            `
+        }
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
+        ${isSpecial && visible ? "scale-[1.02]" : ""}
         ${align === "right" ? "text-right" : "text-left"}
       `}
     >
+      {isSpecial && (
+        <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-[var(--accent)]/40" />
+      )}
+
       <span
-        className="inline-block mb-2 rounded-full border border-[var(--border)]
-        bg-[var(--surface-2)] px-3 py-1 text-xs font-semibold text-[var(--muted)]"
+        className={`
+          inline-flex items-center gap-2 mb-3 rounded-full px-3 py-1 text-xs font-semibold
+          ${
+            isSpecial
+              ? "bg-[var(--accent)]/20 text-white font-bold border border-[var(--accent)]/40"
+              : "bg-[var(--surface-2)] text-[var(--muted)] border border-[var(--border)]"
+          }
+        `}
       >
         {step.date}
+        {isSpecial && <span className="uppercase tracking-wide">Final</span>}
       </span>
 
-      <h3 className="mt-2 text-lg font-semibold text-[var(--text)]">
+      <h3
+        className={`
+          text-lg 
+          ${
+            isSpecial
+              ? "text-[var(--text)] uppercase leading-tight font-bold"
+              : "text-[var(--text)] font-semibold"
+          }
+        `}
+      >
         {step.title}
       </h3>
 
-      <p className="mt-2 text-sm font-semibold text-[var(--muted)]">
+      <p
+        className={`
+          mt-2 text-sm font-medium
+          ${isSpecial ? "text-[var(--text)]/90" : "text-[var(--muted)]"}
+        `}
+      >
         {step.detail}
       </p>
     </div>
@@ -117,7 +164,7 @@ const TimelineSection = () => {
         <div
           className="absolute inset-0 bg-gradient-to-b
           from-[var(--bg)]
-          via-[var(--bg)]/20
+          via-[var(--bg)]/12
           to-[var(--bg)]"
         />
 
@@ -130,7 +177,12 @@ const TimelineSection = () => {
 
           <div className="space-y-8">
             {TIMELINE.map((step, index) => (
-              <TimelineItem key={step.title} step={step} index={index} />
+              <TimelineItem
+                key={step.title}
+                step={step}
+                index={index}
+                isLast={TIMELINE.length - 1 === index}
+              />
             ))}
           </div>
         </div>

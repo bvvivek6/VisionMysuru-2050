@@ -1,4 +1,4 @@
-import { TOPICS } from "../../constants/topics";
+import { TOPICS } from "../../constants/content.js";
 import { Section } from "./Section.jsx";
 
 const topicImages = {
@@ -28,7 +28,7 @@ const TopicsSection = () => {
             className="group overflow-hidden rounded-xl 
             bg-[var(--surface)] transition hover:border-[var(--accent)]"
           >
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-56 overflow-hidden">
               <img
                 src={topicImages[t.title] ?? "/mysuru2.jpeg"}
                 alt=""
@@ -37,10 +37,10 @@ const TopicsSection = () => {
                 className="h-full w-full object-cover transition-transform duration-500
                 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-(--bg)/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/10 to-transparent" />
             </div>
 
-            <div className="px-4 pb-8">
+            <div className="px-4 mt-2 pb-8">
               <h3 className="text-base font-semibold text-[var(--text)]">
                 {t.title}
               </h3>
