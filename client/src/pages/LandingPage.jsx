@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const LandingPage = () => {
   return (
     <motion.div
-      className="m-1 md:m-2 rounded-2xl overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]"
+      className="overflow-hidden flex flex-col dm-sans bg-[var(--bg)] text-[var(--text)]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
