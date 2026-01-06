@@ -6,7 +6,7 @@ const SubmissionNav = () => {
   return (
     <div>
       {" "}
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur">
+      <header className="sticky top-0 z-50  backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
           <Link to="/" className="text-sm font-bold">
             Vision Mysuru 2050
