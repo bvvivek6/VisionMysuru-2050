@@ -85,10 +85,15 @@ const About = () => {
             className="h-full w-full object-cover"
             loading="lazy"
           />
-          <div className="absolute left-0 top-0 h-full w-15 bg-gradient-to-r from-[var(--bg)] to-transparent" />
-          <div className="absolute right-0 top-0 h-full w-15 bg-gradient-to-l from-[var(--bg)] to-transparent" />
-          <div className="absolute top-0 h-15 w-full bg-gradient-to-b from-[var(--bg)] to-transparent" />
-          <div className="absolute bottom-0  h-15 w-full bg-gradient-to-t from-[var(--bg)] to-transparent" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+            linear-gradient(to right, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%),
+            linear-gradient(to bottom, var(--bg) 0%, transparent 25%, transparent 75%, var(--bg) 100%)
+          `,
+            }}
+          />
         </div>
       </div>
     </Section>
