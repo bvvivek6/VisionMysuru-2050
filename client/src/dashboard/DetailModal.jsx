@@ -31,12 +31,13 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="fixed inset-0 z-50 flex  items-center justify-center bg-black/20 backdrop-blur p-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
-          className="relative max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-xl bg-[var(--surface)] "
+          transition={{ duration: 0.2 }}
+          className="relative max-h-[90vh] w-full border-4 border-black/70 shadow-2xl max-w-6xl overflow-y-auto rounded-2xl bg-[var(--surface)] "
         >
           <div className="sticky top-0 z-10  bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
             <div>
@@ -44,13 +45,11 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                 {submission.solutionName}
               </h2>
               <div className="mt-1 flex flex-wrap items-center gap-2  text-[var(--muted)]">
-                <span className="font-mono  text-white bg-black font-bold text-md  rounded bg-[var(--bg)] px-3 py-0.5">
+                <span className="font-mono  text-white bg-black font-medium text-md  rounded bg-[var(--bg)] px-3 py-0.5">
                   {submission.teamId}
                 </span>
                 <span>•</span>
-                <span className="uppercase text-sm tracking-wide">
-                  {submission.theme}
-                </span>
+                <span className="uppercase text-sm">{submission.theme}</span>
               </div>
             </div>
 

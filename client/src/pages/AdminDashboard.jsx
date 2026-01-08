@@ -135,7 +135,7 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <main className=" px-4 py-8 sm:px-6 lg:px-8 space-y-4">
+      <main className=" px-4 py-8 sm:px-6 lg:px-8 max-w-8xl mx-auto space-y-4">
         <Stats submissions={submissions} />
         <section className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2">
