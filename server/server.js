@@ -1,9 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const connectDB = require("./utils/db");
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import dotenv from "dotenv";
+import connectDB from "./utils/db.js";
+import submissionRoutes from "./routes/submissionRoutes.js";
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ app.use(express.json());
 
 connectDB();
 
-// app.use("/api/v1/submissions", submissionRoutes);
+app.use("/api/v1/submissions", submissionRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

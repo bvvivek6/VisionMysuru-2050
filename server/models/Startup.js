@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const StartupSchema = new mongoose.Schema(
   {
@@ -31,4 +31,6 @@ const StartupSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Startup", StartupSchema);
+const Startup = mongoose.model("Startup", StartupSchema);
+
+export default Startup;

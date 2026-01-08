@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const NGOSchema = new mongoose.Schema(
   {
@@ -29,4 +29,6 @@ const NGOSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("NGO", NGOSchema);
+const NGO = mongoose.model("NGO", NGOSchema);
+
+export default NGO;
