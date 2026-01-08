@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
+import fs from "fs";
 dotenv.config();
 
 cloudinary.config({
@@ -8,7 +9,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploadToCloudinary = async (path, folder = "testing") => {
+const uploadToCloudinary = async (path, folder = "visionMysuru2050") => {
+  //check file size and type before uploading
+  const size = fs.statSync(path).size;
+  if (size > 2 * 1024 * 1024) {
+    throw new Error("File size exceeds 2MB");
+  }
   try {
     const data = await cloudinary.uploader.upload(path, {
       folder: folder,

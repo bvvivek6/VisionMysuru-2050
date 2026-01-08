@@ -5,6 +5,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import submissionRoutes from "./routes/submissionRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/v1/submissions", submissionRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -24,7 +24,13 @@ const StartupSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "accepted", "rejected"],
+       enum: [
+        "pending",
+        "shortlisted_r1",
+        "shortlisted_r2",
+        "finaleist",
+        "winner",
+      ],
       default: "pending",
     },
   },

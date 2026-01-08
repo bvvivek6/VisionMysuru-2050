@@ -1,17 +1,60 @@
+import React, { Suspense, memo } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/LandingPage.jsx";
-import SubmitIdeaPage from "./pages/SubmitIdeaPage.jsx";
+import { Toaster } from "react-hot-toast";
+
+const LandingPage = React.lazy(() => import("./pages/LandingPage.jsx"));
+const SubmitIdeaPage = React.lazy(() => import("./pages/SubmitIdeaPage.jsx"));
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/submit" element={<SubmitIdeaPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/submit" element={<SubmitIdeaPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            fontSize: "14px",
+            padding: "10px 24px",
+            borderRadius: 50,
+            background: "rgba(255, 255, 255, 0.9)",
+            color: "#111827",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(16px)",
+            border: "1px solid #e5e7eb",
+            fontFamily: "'DM Sans', sans-serif",
+          },
+          success: {
+            iconTheme: {
+              primary: "#22c55e",
+              secondary: "#ffffff",
+            },
+            style: {
+              borderLeft: "4px solid #22c55e",
+              borderRight: "4px solid #22c55e",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#ef4444",
+              secondary: "#ffffff",
+            },
+            style: {
+              borderLeft: "4px solid #ef4444",
+              borderRight: "4px solid #ef4444",
+            },
+          },
+        }}
+      />
     </BrowserRouter>
   );
 };
 
-export default App;
+export default memo(App);
