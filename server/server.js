@@ -19,6 +19,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/v1/submissions", submissionRoutes);
+app.use("/api/v1/winners", submissionRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
 app.listen(PORT, () => {

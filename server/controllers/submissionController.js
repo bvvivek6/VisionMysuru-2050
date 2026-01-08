@@ -126,4 +126,23 @@ const createSubmission = async (req, res) => {
   }
 };
 
-export { createSubmission };
+//get winner
+const getWinners = async (req, res) => {
+  try {
+    const students = await Student.find({ status: "winner" });
+    const startups = await Startup.find({ status: "winner" });
+    const ngos = await NGO.find({ status: "winner" });
+
+    //combine all winners
+    const totalWinners = [...students, ...startups, ...ngos];
+
+    res.status(200).json({ totalWinners });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
+export { createSubmission, getWinners };

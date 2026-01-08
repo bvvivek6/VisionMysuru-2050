@@ -30,7 +30,7 @@ const StudentSchema = new mongoose.Schema(
         "pending",
         "shortlisted_r1",
         "shortlisted_r2",
-        "finaleist",
+        "finalist",
         "winner",
       ],
       default: "pending",
