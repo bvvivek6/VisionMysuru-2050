@@ -79,8 +79,7 @@ const Card = ({ step, visible, align, isSpecial }) => {
     <div
       className={`
         relative max-w-md w-full rounded-4xl p-5
-        backdrop-blur transition-all tracking-tight duration-700 ease-out
-        border
+        backdrop-blur transition-all tracking-tight duration-700 ease-out 
         ${
           isSpecial
             ? `
@@ -89,11 +88,14 @@ const Card = ({ step, visible, align, isSpecial }) => {
               via-yellow-500/35
               to-orange-400/35
               border-[var(--accent)]
+              border-4 border-b border-l
             `
             : `
+            border-4
+              border-b border-r
               bg-[var(--surface)]/80
-              border-[var(--border)]
-              shadow-sm
+              border-[var(--accent)]
+              
             `
         }
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
@@ -107,13 +109,7 @@ const Card = ({ step, visible, align, isSpecial }) => {
 
       <span
         className={`
-          inline-flex items-center gap-2 mb-3 rounded-full px-3 py-1 text-sm font-bold tracking-tighter
-          ${
-            isSpecial
-              ? "bg-[var(--accent)]/20 text-black border border-[var(--accent)]/40"
-              : "bg-[var(--surface)] text-black border border-[var(--border)]"
-          }
-        `}
+          inline-flex items-center gap-2 mb-1 rounded-tl-xl rounded-bl-sm bg-gradient-to-r from-yellow-500 via-amber-500/70 to-transparent text-black px-4 py-1 text-sm font-bold tracking-tighter`}
       >
         {step.date}
         {isSpecial && <span className="uppercase tracking-wide ">Final</span>}
@@ -165,7 +161,7 @@ const Card = ({ step, visible, align, isSpecial }) => {
                   ${
                     isSpecial
                       ? "bg-[var(--accent)]/15 text-[var(--text)] border-[var(--accent)]/30"
-                      : "bg-white text-black border-[var(--border)]"
+                      : "bg-white/70 text-black border-[var(--border)]"
                   }
                 `}
               >
