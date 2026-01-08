@@ -74,13 +74,12 @@ const TimelineItem = ({ step, index, isLast }) => {
     </div>
   );
 };
-
 const Card = ({ step, visible, align, isSpecial }) => {
   return (
     <div
       className={`
-        relative max-w-md w-full rounded-2xl p-5
-        backdrop-blur transition-all duration-700 ease-out
+        relative max-w-md w-full rounded-4xl p-5
+        backdrop-blur transition-all tracking-tight duration-700 ease-out
         border
         ${
           isSpecial
@@ -108,21 +107,21 @@ const Card = ({ step, visible, align, isSpecial }) => {
 
       <span
         className={`
-          inline-flex items-center gap-2 mb-3 rounded-full px-3 py-1 text-xs font-semibold
+          inline-flex items-center gap-2 mb-3 rounded-full px-3 py-1 text-sm font-bold tracking-tighter
           ${
             isSpecial
-              ? "bg-[var(--accent)]/20 text-white font-bold border border-[var(--accent)]/40"
-              : "bg-[var(--surface-2)] text-[var(--muted)] border border-[var(--border)]"
+              ? "bg-[var(--accent)]/20 text-black border border-[var(--accent)]/40"
+              : "bg-[var(--surface)] text-black border border-[var(--border)]"
           }
         `}
       >
         {step.date}
-        {isSpecial && <span className="uppercase tracking-wide">Final</span>}
+        {isSpecial && <span className="uppercase tracking-wide ">Final</span>}
       </span>
 
       <h3
         className={`
-          text-lg 
+          text-lg
           ${
             isSpecial
               ? "text-[var(--text)] uppercase leading-tight font-bold"
@@ -135,12 +134,47 @@ const Card = ({ step, visible, align, isSpecial }) => {
 
       <p
         className={`
-          mt-2 text-sm font-medium
+          mt-2 text-sm leading-tight 
           ${isSpecial ? "text-[var(--text)]/90" : "text-[var(--muted)]"}
         `}
       >
         {step.detail}
       </p>
+
+      {step.eligibleFor?.length > 0 && (
+        <div
+          className={`mt-4 ${
+            align === "right" ? "flex flex-col items-end" : "flex flex-col"
+          }`}
+        >
+          <span className="mb-2 text-xs uppercase tracking-wide text-[var(--muted)]">
+            Eligible for
+          </span>
+
+          <div
+            className={`flex flex-wrap gap-1 ${
+              align === "right" ? "justify-end" : "justify-start"
+            }`}
+          >
+            {step.eligibleFor.map((role) => (
+              <span
+                key={role}
+                className={`
+                  rounded-full px-3 py-1 text-xs font-semibold
+                  border
+                  ${
+                    isSpecial
+                      ? "bg-[var(--accent)]/15 text-[var(--text)] border-[var(--accent)]/30"
+                      : "bg-white text-black border-[var(--border)]"
+                  }
+                `}
+              >
+                {role}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -175,7 +209,7 @@ const TimelineSection = () => {
             bg-gradient-to-b from-transparent via-[var(--accent)] to-transparent"
           />
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {TIMELINE.map((step, index) => (
               <TimelineItem
                 key={step.title}

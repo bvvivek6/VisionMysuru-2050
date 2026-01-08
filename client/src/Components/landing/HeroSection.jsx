@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiCalendar } from "react-icons/fi";
 import { motion } from "framer-motion";
+import Confetti from "react-confetti";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[92vh] overflow-hidden">
+      <Confetti numberOfPieces={500} recycle={false} gravity={0.4} />
       <div className="absolute border-b-6 border-[var(--accent)] inset-0 z-0">
         <motion.img
           src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551010/mysuru2_vsbpnf.jpg"
@@ -24,14 +26,8 @@ const HeroSection = () => {
             <span className="inline-block w-fit  bg-white px-3  text-[var(--accent)]">
               Vision Mysuru 2050
             </span>
-            <span>Build the future of Mysuru</span>
+            <span className="text-5xl">Build the future of Mysuru</span>
           </h1>
-
-          <p className="mt-6 text-base text-white/85 sm:text-lg">
-            A competition for college students, startups, and NGOs to pitch
-            high-impact ideas. Get mentorship, recognition, and real pathways to
-            implementation.
-          </p>
 
           <div className="mt-25 md:mt-20 flex flex-col gap-3 sm:flex-row">
             <Link

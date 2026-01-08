@@ -1,116 +1,166 @@
-import { FiAlertCircle, FiUsers, FiMapPin, FiCheck } from "react-icons/fi";
+import { useState } from "react";
 import {
-  TEAM_COMPOSITION,
-  CHALLENGE_FORMAT,
-  DISQUALIFICATION,
-} from "../../constants/content.js";
+  FiAlertCircle,
+  FiUsers,
+  FiMapPin,
+  FiCheck,
+  FiTarget,
+  FiAward,
+  FiBriefcase,
+  FiLayers,
+} from "react-icons/fi";
+import { GUIDELINES } from "../../constants/content.js";
+import { motion, AnimatePresence } from "framer-motion";
 
 const RulesAndRegulations = () => {
+  const [activeTab, setActiveTab] = useState("student");
+  const activeCategory = GUIDELINES.categories.find((c) => c.id === activeTab);
+
   return (
-    <section className="m-1 md:m-4 px-4  dm-sans">
-      <main className="mx-auto max-w-6xl">
-        <header className="mb-4">
-          <span
-            className="inline-flex items-center rounded-full
-            bg-[var(--accent-soft)] px-4 py-1.5
-            text-xs font-semibold uppercase tracking-wider
-            text-[var(--accent)]"
-          >
-            Guidelines
-          </span>
+    <section className="m-1 md:m-4 px-4 dm-sans">
+      <main className="mx-auto max-w-6xl space-y-2">
+        <header className="mb-6">
+          <h2 className="mt-2 text-2xl font-bold text-[var(--text)]">
+            Category Guidelines
+          </h2>
         </header>
 
-        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
-          <div className=" border rounded-2xl overflow-hidden border-[var(--accent-soft)] ">
-            <div className="mb-3 bg-[var(--accent-soft)]  flex p-4 items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center ">
-                <FiUsers size={18} />
-              </div>
-              <h2 className="font-semibold text-[var(--text)]">
-                Team Composition
-              </h2>
-            </div>
+        <div className="flex flex-wrap gap-2  pb-1">
+          {GUIDELINES.categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(cat.id)}
+              className={`px-4 py-2 text-md transition-colors relative ${
+                activeTab === cat.id
+                  ? "text-[var(--accent)] font-bold bg-[var(--accent-soft)]"
+                  : "text-[var(--muted)] hover:text-[var(--text)]"
+              }`}
+            >
+              {cat.title}
+              {activeTab === cat.id && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--accent)]"
+                />
+              )}
+            </button>
+          ))}
+        </div>
 
-            <ul className="space-y-2 text-sm px-4 text-[var(--muted)]">
-              {TEAM_COMPOSITION.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <FiCheck className="mt-0.5 text-[var(--accent)]" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-[var(--accent-soft)] overflow-hidden ">
-            <div className="mb-3 bg-[var(--accent-soft)] flex p-4 items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center ">
-                <FiMapPin size={18} />
-              </div>
-              <h2 className="font-semibold text-[var(--text)]">
-                Challenge Format
-              </h2>
-            </div>
-
-            <div className="space-y-2 text-sm pb-2  px-4  text-[var(--muted)]">
-              {CHALLENGE_FORMAT.map(({ title, desc }) => (
-                <div key={title}>
-                  <div className="">
-                    - {title} : {desc}
-                  </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-2"
+          >
+            <div className="grid gap-2 md:grid-cols-2">
+              <div className="border border-[var(--border)] rounded-2xl p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <h4 className="font-semibold text-[var(--text)]">
+                    Eligibility Guidelines
+                  </h4>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-red-100 max-w-md">
-            <div className="flex items-center gap-2 bg-[#F15950] p-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/80 text-white">
-                <FiAlertCircle size={22} />
+                <ul className="space-y-2">
+                  {activeCategory.eligibility.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-2 text-sm text-[var(--muted)]"
+                    >
+                      <FiCheck className="shrink-0 mt-0.5 text-[var(--accent)]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-md font-bold tracking-tight text-white">
-                Strictly Prohibited
-              </h2>
+
+              <div className="border border-[var(--border)] rounded-2xl p-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <h4 className="font-semibold text-[var(--text)]">Purpose</h4>
+                </div>
+                <ul className="space-y-2">
+                  {activeCategory.purpose.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-2 text-sm text-[var(--muted)]"
+                    >
+                      <span className="shrink-0 mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="p-4">
-              <ul className="space-y-4">
-                {DISQUALIFICATION.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-[#F15950]" />
-
-                    <span className="text-sm  leading-tight text-[#5D2320]/90">
-                      {item}
-                    </span>
-                  </li>
+            <div className="border border-[var(--border)] rounded-2xl p-4 bg-white/50">
+              <div className="flex items-center gap-2 mb-4">
+                <h4 className="font-semibold text-[var(--text)]">
+                  Mandatory Submission Components
+                </h4>
+              </div>
+              <div className="grid md:grid-cols-3 gap-2">
+                {activeCategory.submissionComponents.map((comp, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border)]"
+                  >
+                    <h5 className="font-semibold text-[var(--text)] text-sm mb-2">
+                      {comp.title}
+                    </h5>
+                    <ul className="space-y-2">
+                      {comp.details.map((detail, dIdx) => (
+                        <li
+                          key={dIdx}
+                          className="text-sm text-[var(--muted)] flex gap-2"
+                        >
+                          <span className="shrink-0 mt-1 h-1 w-1 rounded-full bg-[var(--muted)]" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2"></div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div>
+          <div className=" grid md:grid-cols-2 gap-6">
+            <div className="p-6 bg-red-50 rounded-2xl border border-red-100">
+              <div className="flex items-center gap-3 mb-4">
+                <FiAlertCircle className="text-red-500" size={24} />
+                <h4 className="text-lg font-bold text-red-700">
+                  Disqualification Criteria
+                </h4>
+              </div>
+              <ul className="space-y-2 text-sm text-red-600/80">
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
+                  Stock or AI-generated images
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
+                  Plagiarized ideas
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
+                  Submissions without geotagged evidence
+                </li>
               </ul>
             </div>
           </div>
-        </div>
 
-        <div
-          className="mt-2 overflow-hidden gap-6
-          rounded-2xl border border-[var(--border)]
-          "
-        >
-          <div className="text-sm w-full p-6 font-semibold bg-[var(--accent-soft)] text-[var(--text)]">
-            Submission File
-          </div>
-          <div className="p-4 text-sm text-[var(--muted)]">
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              PDF • Max 2MB • Official Portal Only
-            </p>
-
-            <p className="mt-3 text-xs">
-              Questions?{" "}
-              <a
-                href="mailto:vision2050@sdmimd.ac.in"
-                className="font-semibold text-[var(--accent)]
-                underline underline-offset-4"
-              >
-                Email Support
-              </a>
-            </p>
+          <div className="mt-6 flex  font-bold items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
+            {" "}
+            Submission File - 
+            <span className="text-md font-medium text-[var(--muted)]">
+              PDF • Max 2MB
+            </span>
           </div>
         </div>
       </main>

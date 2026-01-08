@@ -30,15 +30,6 @@ export const TeamMembers = ({
   <div className="rounded-2xl bg-[var(--surface-2)] p-4 space-y-4">
     <div className="flex items-center justify-between">
       <p className="text-sm font-bold">Team Members (Min 2, Max 3)</p>
-      {form.members.length < 3 && (
-        <button
-          type="button"
-          onClick={addMember}
-          className="flex items-center gap-1 text-xs font-bold text-[var(--accent)] hover:underline"
-        >
-          <FiPlus /> Add Member
-        </button>
-      )}
     </div>
     {form.members.map((m, idx) => (
       <div
@@ -46,11 +37,11 @@ export const TeamMembers = ({
         className="flex flex-col gap-3 border-b border-[var(--border)] pb-4 last:border-0 last:pb-0"
       >
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-[var(--muted)]">
+          <span className="text-sm font-semibold text-[var(--muted)]">
             Member {idx + 1}
           </span>
           <div className="flex items-center gap-3">
-            <label className="flex items-center gap-2 cursor-pointer">
+            <label className="flex items-center gap-2  cursor-pointer">
               <input
                 type="radio"
                 name="teamLeader"
@@ -58,14 +49,14 @@ export const TeamMembers = ({
                 onChange={() => setLeader(idx)}
                 className="accent-[var(--accent)]"
               />
-              <span className="text-xs font-medium">Leader</span>
+              <span className="text-sm font-medium">Leader</span>
             </label>
 
             {form.members.length > 2 && (
               <button
                 type="button"
                 onClick={() => removeMember(idx)}
-                className="text-red-500 hover:text-red-700"
+                className="text-white bg-red-500 hover:bg-red-600 p-1.5 rounded-full flex items-center justify-center"
                 title="Remove Member"
               >
                 <FiTrash />
@@ -88,13 +79,22 @@ export const TeamMembers = ({
           <TextInput
             value={m.phone}
             onChange={setMember(idx, "phone")}
-            placeholder="Phone Number"
+            placeholder="Phone Number +91 xxxx xxxxx"
             type="tel"
             className="sm:col-span-2"
           />
         </div>
       </div>
     ))}
+    {form.members.length < 3 && (
+      <button
+        type="button"
+        onClick={addMember}
+        className="flex items-center bg-[var(--accent)] gap-1 text-sm px-10  font-bold text-white px-4 py-2 rounded-xl hover:underline"
+      >
+        <FiPlus /> Add Member
+      </button>
+    )}
   </div>
 );
 
@@ -122,12 +122,7 @@ export const ProjectDetails = ({ form, set, onPickPdf }) => (
       />
     </Field>
 
-    <Field
-      label="Upload PDF"
-      required
-      hint="PDF only · Max 2MB"
-      className="space-y-2"
-    >
+    <Field label="Upload PDF (max 2MB)" required className="space-y-2">
       <input
         type="file"
         accept="application/pdf"
@@ -168,9 +163,9 @@ export const SubmitButton = ({ status, confirmSubmit, cancelSubmit }) => {
               ⚠️ Final Review
             </p>
             <p className="text-sm text-amber-800 mt-1 leading-relaxed">
-              Please carefully review all entered information like name, email,
-              phone number etc, before submitting. Once submitted, the status
-              cannot be modified.
+              Please carefully review all entered information like NAME, EMAIL,
+              PHONE etc, before submitting. Once submitted, the status cannot be
+              modified.
             </p>
           </div>
         </div>

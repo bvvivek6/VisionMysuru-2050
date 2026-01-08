@@ -92,32 +92,41 @@ const TOPICS = [
     ],
   },
 ];
-
 const TIMELINE = [
   {
     title: "Registration Opens",
     date: "Feb 01, 2026",
-    detail: "Registrations open for Mysuru Vision 2050.",
+    eligibleFor: ["Students", "Corporates", "NGOs"],
+    detail:
+      "Registrations open for all participants to identify on-ground urban challenges across key city domains.",
   },
   {
-    title: "Submission Deadline",
-    date: "Feb 20, 2026",
-    detail: "Last date to submit your idea.",
+    title: "Phase 1: Online Screening",
+    date: "Feb 01 – Mar 05, 2026",
+    eligibleFor: ["Students", "Corporates", "NGOs"],
+    detail:
+      "Evidence-based screening with geotagged field proof and a short solution abstract. Only authentic, relevant ideas are shortlisted.",
   },
   {
-    title: "The Elimination Round",
-    date: "Feb 21, 2026",
-    detail: "Shortlisted teams present for elimination round evaluation.",
+    title: "Round 1: The Elimination (Student Qualifiers)",
+    date: "Mar 13, 2026",
+    eligibleFor: ["Students"],
+    detail:
+      "Student teams validate problem severity using real data and quantified impact before an expert jury.",
   },
   {
-    title: "The Corporate Summit",
-    date: "Feb 22, 2026",
-    detail: "Engage with industry leaders and mentors at the summit.",
+    title: "Round 2: The Corporate Summit (Convergence Round)",
+    date: "Mar 14, 2026",
+    eligibleFor: ["Students", "Corporates", "NGOs"],
+    detail:
+      "Students refine ideas through mentorship, while corporates and NGOs present deployment-ready, scalable solutions.",
   },
   {
-    title: "The Grand Conclave & Handover",
-    date: "Feb 23, 2026",
-    detail: "Final conclave and formal handover of outcomes.",
+    title: "Round 3: The Grand Conclave & White Paper Handover",
+    date: "Mar 15, 2026",
+    eligibleFor: ["Finalist Students", "Corporates", "NGOs"],
+    detail:
+      "Final policy pitch to city leadership. Selected ideas are compiled into the Mysuru Vision 2050 White Paper.",
   },
 ];
 
@@ -162,32 +171,135 @@ const CORE_OBJECTIVES = [
   },
 ];
 
-const TEAM_COMPOSITION = [
-  "2 to 3 members per team",
-  "Students or recognised entities based in Mysuru",
-  "Inter-college / institution teams permitted",
-];
-
-const CHALLENGE_FORMAT = [
-  {
-    title: "The Photo",
-    desc: "Geotagged photo of a real civic issue.",
-  },
-  {
-    title: "The Solution",
-    desc: "Concise abstract (max 100 words).",
-  },
-  {
-    title: "The Pitch",
-    desc: "3-minute roadmap for shortlisted teams.",
-  },
-];
-
-const DISQUALIFICATION = [
-  "Plagiarised ideas",
-  "Stock or AI-generated images",
-  "Late submissions",
-];
+const GUIDELINES = {
+  categories: [
+    {
+      id: "student",
+      title: "Student Category",
+      subtitle: "CITY CONSULTANTS IN MAKING",
+      eligibility: [
+        "Open to Undergraduate and Postgraduate students from: Engineering, Management, Arts, Science",
+        "Students must be enrolled in institutions located in or associated with Mysuru",
+        "Inter-college teams are permitted",
+        "Team Size: 2–3 students",
+      ],
+      purpose: [
+        "Civic problem identifiers",
+        "Ground-level data collectors",
+        "Future policy thinkers",
+        "This is NOT an idea contest. It is a problem-validation-first civic exercise.",
+      ],
+      submissionComponents: [
+        {
+          title: "Evidence Component (Compulsory)",
+          details: [
+            "One clear geotagged photograph taken by the team",
+            "Photo must clearly show the civic issue",
+            "Be taken within Mysuru city limits",
+            "Not be downloaded or reused from online sources",
+            "❌ Stock images or edited visuals will lead to immediate disqualification",
+          ],
+        },
+        {
+          title: "Problem Statement (Max 100 words)",
+          details: [
+            "Must clearly answer: What exactly is the problem?",
+            "Who is affected?",
+            "Why does it matter to Mysuru’s future?",
+            "Focus on clarity, not complexity.",
+          ],
+        },
+        {
+          title: "Domain Mapping",
+          details: [
+            "The problem must fall strictly under one domain from the general list.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "corporate",
+      title: "Corporate Category",
+      subtitle: "EXECUTION PARTNERS OF THE CITY",
+      eligibility: [
+        "Open to Startups, MSMEs, Large enterprises",
+        "Operating in or planning expansion in Mysuru region",
+        "Registered entities only",
+        "One submission per organization (recommended)",
+      ],
+      purpose: [
+        "Provide execution realism",
+        "Highlight infrastructure & policy bottlenecks",
+        "Propose Public–Private Partnership (PPP) models",
+        "This is not a branding exercise.",
+      ],
+      submissionComponents: [
+        {
+          title: "Problem Identification (Optional)",
+          details: [
+            "Corporates may adopt an existing student-identified problem",
+            "OR present a systemic industry-related issue",
+          ],
+        },
+        {
+          title: "Solution Blueprint (Mandatory)",
+          details: [
+            "Proposed intervention",
+            "Estimated investment range",
+            "Required government facilitation",
+            "Timeline (Short / Medium / Long term)",
+          ],
+        },
+        {
+          title: "Feasibility Justification",
+          details: [
+            "Operational capability",
+            "Financial reasoning (indicative, not audited)",
+            "Scalability beyond pilot stage",
+          ],
+        },
+      ],
+    },
+    {
+      id: "ngo",
+      title: "NGO / Community Category",
+      subtitle: "THE VOICE OF THE PEOPLE",
+      eligibility: [
+        "Open to NGOs, Resident Welfare Associations (RWAs), Trade Associations, Civil Society Groups",
+        "Operating within Mysuru district",
+        "✔ Must have verifiable community presence",
+      ],
+      purpose: [
+        "Represent citizen realities",
+        "Validate grassroots issues",
+        "Ensure inclusivity and social balance in policy",
+      ],
+      submissionComponents: [
+        {
+          title: "Community Problem Description",
+          details: [
+            "Must include: Area / locality name",
+            "Nature of community impact",
+            "Duration of the issue",
+          ],
+        },
+        {
+          title: "Evidence of Ground Engagement",
+          details: [
+            "Any one of: Photographic evidence, Community petition summary, Prior representations to authorities",
+          ],
+        },
+        {
+          title: "Suggested Intervention",
+          details: [
+            "Practical and community-oriented",
+            "Can involve: Awareness programs, Infrastructure support, Policy reform suggestions",
+          ],
+        },
+      ],
+    },
+  ],
+};
 
 export {
   TOPICS,
@@ -195,7 +307,5 @@ export {
   CATEGORY,
   TOPIC_OPTIONS,
   CORE_OBJECTIVES,
-  TEAM_COMPOSITION,
-  CHALLENGE_FORMAT,
-  DISQUALIFICATION,
+  GUIDELINES,
 };
