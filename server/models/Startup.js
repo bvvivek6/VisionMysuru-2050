@@ -11,6 +11,7 @@ const StartupSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         email: { type: String, required: true },
+        phone: { type: String, required: true },
         isLeader: { type: Boolean, default: false },
       },
     ],
@@ -24,7 +25,7 @@ const StartupSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-       enum: [
+      enum: [
         "pending",
         "shortlisted_r1",
         "shortlisted_r2",

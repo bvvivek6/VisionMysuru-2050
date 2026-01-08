@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const MAX_PDF_BYTES = 2 * 1024 * 1024;
-export const createEmptyMember = () => ({ name: "", email: "" });
+export const createEmptyMember = () => ({ name: "", email: "", phone: "" });
 
 export const useSubmissionForm = (initialState, validateFn) => {
   const [form, setForm] = useState(initialState);

@@ -9,6 +9,7 @@ const NGOSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         email: { type: String, required: true },
+        phone: { type: String, required: true },
         isLeader: { type: Boolean, default: false },
       },
     ],

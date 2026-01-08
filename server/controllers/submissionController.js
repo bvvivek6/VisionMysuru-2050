@@ -16,7 +16,6 @@ const createSubmission = async (req, res) => {
       shortDescription,
       institution,
       department,
-      leaderAge,
       stage,
       website,
     } = req.body;
@@ -71,7 +70,6 @@ const createSubmission = async (req, res) => {
           ...basePayload,
           institution,
           department,
-          leaderAge: Number(leaderAge),
         });
         break;
 

@@ -11,10 +11,11 @@ const StudentSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         email: { type: String, required: true },
+        phone: { type: String, required: true },
         isLeader: { type: Boolean, default: false },
       },
     ],
-    leaderAge: { type: Number, required: true },
+
     theme: { type: String, required: true },
     solutionName: { type: String, required: true },
     shortDescription: { type: String, required: true },

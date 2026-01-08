@@ -2,12 +2,7 @@ import React from "react";
 import { CATEGORY, TOPIC_OPTIONS } from "../../../constants/content";
 import { useSubmissionForm, createEmptyMember } from "./useSubmissionForm";
 import { Field, TextInput } from "./FormUI";
-import {
-  StatusMessage,
-  TeamMembers,
-  ProjectDetails,
-  SubmitButton,
-} from "./SharedSections";
+import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 
 const StudentForm = () => {
   const initialState = {
@@ -15,7 +10,6 @@ const StudentForm = () => {
     organizationName: "",
     city: "Mysuru",
     leaderIndex: "0",
-    leaderAge: "",
     institution: "",
     department: "",
     members: [createEmptyMember(), createEmptyMember()],
@@ -28,18 +22,19 @@ const StudentForm = () => {
 
   const validate = (form) => {
     if (!form.organizationName.trim()) return "College name is required.";
+    if (!form.institution.trim()) return "Institution name is required.";
+    if (!form.department.trim()) return "Department is required.";
 
     const filledMembers = form.members.filter(
-      (m) => m.name.trim() && m.email.trim()
+      (m) => m.name.trim() && m.email.trim() && m.phone.trim()
     );
     if (filledMembers.length < 2)
-      return "At least 2 team members are required.";
+      return "At least 2 team members are required with complete details.";
 
     const leader = form.members[parseInt(form.leaderIndex)];
-    if (!leader.name.trim() || !leader.email.trim())
-      return "Selected leader must have a name and email.";
+    if (!leader.name.trim() || !leader.email.trim() || !leader.phone.trim())
+      return "Selected leader must have complete details.";
 
-    if (!form.leaderAge) return "Leader age is required for students.";
     if (!form.solutionName.trim()) return "Solution name is required.";
     if (!form.pdfFile) return "Please upload your project PDF.";
     if (!form.consent) return "You must agree to the declaration.";
@@ -100,16 +95,6 @@ const StudentForm = () => {
         setMember={setMember}
       />
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Leader Age" required>
-          <TextInput
-            type="number"
-            value={form.leaderAge}
-            onChange={set("leaderAge")}
-          />
-        </Field>
-      </div>
-
       <ProjectDetails form={form} set={set} onPickPdf={onPickPdf} />
 
       <SubmitButton
@@ -117,7 +102,6 @@ const StudentForm = () => {
         confirmSubmit={confirmSubmit}
         cancelSubmit={cancelSubmit}
       />
-      <StatusMessage status={status} />
     </form>
   );
 };

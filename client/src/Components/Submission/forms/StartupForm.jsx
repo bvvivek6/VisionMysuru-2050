@@ -2,12 +2,7 @@ import React from "react";
 import { CATEGORY, TOPIC_OPTIONS } from "../../../constants/content";
 import { useSubmissionForm, createEmptyMember } from "./useSubmissionForm";
 import { Field, TextInput } from "./FormUI";
-import {
-  StatusMessage,
-  TeamMembers,
-  ProjectDetails,
-  SubmitButton,
-} from "./SharedSections";
+import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 
 const StartupForm = () => {
   const initialState = {
@@ -29,14 +24,14 @@ const StartupForm = () => {
     if (!form.organizationName.trim()) return "Organization name is required.";
 
     const filledMembers = form.members.filter(
-      (m) => m.name.trim() && m.email.trim()
+      (m) => m.name.trim() && m.email.trim() && m.phone.trim()
     );
     if (filledMembers.length < 2)
-      return "At least 2 team members are required.";
+      return "At least 2 team members are required with complete details.";
 
     const leader = form.members[parseInt(form.leaderIndex)];
-    if (!leader.name.trim() || !leader.email.trim())
-      return "Selected leader must have a name and email.";
+    if (!leader.name.trim() || !leader.email.trim() || !leader.phone.trim())
+      return "Selected leader must have complete details.";
 
     if (!form.solutionName.trim()) return "Solution name is required.";
     if (!form.pdfFile) return "Please upload your project PDF.";
@@ -105,7 +100,6 @@ const StartupForm = () => {
         confirmSubmit={confirmSubmit}
         cancelSubmit={cancelSubmit}
       />
-      <StatusMessage status={status} />
     </form>
   );
 };

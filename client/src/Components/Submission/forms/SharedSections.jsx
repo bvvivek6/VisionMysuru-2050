@@ -84,6 +84,13 @@ export const TeamMembers = ({
             placeholder="Email"
             type="email"
           />
+          <TextInput
+            value={m.phone}
+            onChange={setMember(idx, "phone")}
+            placeholder="Phone Number"
+            type="tel"
+            className="sm:col-span-2"
+          />
         </div>
       </div>
     ))}
