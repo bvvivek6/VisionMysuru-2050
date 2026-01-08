@@ -4,6 +4,7 @@ import NGO from "../models/NGO.js";
 import Startup from "../models/Startup.js";
 import { uploadToCloudinary } from "../cloudinary.js";
 import { randomUUID } from "crypto";
+import sendSubmissionEmail from "../utils/emailService.js";
 
 const createSubmission = async (req, res) => {
   try {
@@ -99,6 +100,18 @@ const createSubmission = async (req, res) => {
     }
 
     await submission.save();
+
+    // Send confirmation email
+    const leader = parsedMembers.find((m) => m.isLeader) || parsedMembers[0];
+    if (leader && leader.email) {
+      sendSubmissionEmail(
+        leader.email,
+        leader.name,
+        submission.teamId,
+        submission.solutionName,
+        submission.organizationName
+      );
+    }
 
     res.status(201).json({
       message: "Submission created successfully",
