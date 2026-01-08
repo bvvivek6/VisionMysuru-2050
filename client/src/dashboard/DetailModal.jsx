@@ -9,43 +9,65 @@ import {
   FiMail,
 } from "react-icons/fi";
 
-const STATUS_OPTIONS = [
-  "pending",
-  "shortlisted_r1",
-  "shortlisted_r2",
-  "finalist",
-  "winner",
-  "rejected",
-];
 const STATUS_STYLES = {
-  pending: "bg-amber-600 border-amber-700 text-white",
-  shortlisted_r1: "bg-blue-600 border-blue-700 text-white",
-  shortlisted_r2: "bg-blue-700 border-blue-800 text-white",
-  finalist: "bg-purple-600 border-purple-700 text-white",
-  winner: "bg-emerald-700 border-emerald-800 text-white",
-  rejected: "bg-red-700 border-red-800 text-white",
+  Pending: "bg-yellow-100 text-yellow-800 border-yellow-200",
+  screening_shortlisted: "bg-blue-100 text-blue-800 border-blue-200",
+  screening_rejected: "bg-red-100 text-red-800 border-red-200",
+  r1_shortlisted: "bg-indigo-100 text-indigo-800 border-indigo-200",
+  r1_eliminated: "bg-red-100 text-red-800 border-red-200",
+  r2_eliminated: "bg-red-100 text-red-800 border-red-200",
+  finalist: "bg-purple-100 text-purple-800 border-purple-200",
+  winner: "bg-emerald-100 text-emerald-800 border-emerald-200",
 };
+
+const STATUS_GROUPS = [
+  {
+    key: "submission",
+    label: "Submission",
+    statuses: ["Pending"],
+  },
+  {
+    key: "screening",
+    label: "Online Screening",
+    statuses: ["screening_shortlisted", "screening_rejected"],
+  },
+  {
+    key: "r1",
+    label: "Round 1 · Student Elimination",
+    statuses: ["r1_shortlisted", "r1_eliminated"],
+  },
+  {
+    key: "r2",
+    label: "Round 2 · Corporate Summit",
+    statuses: ["r2_eliminated", "finalist"],
+  },
+  {
+    key: "final",
+    label: "Final Stage",
+    statuses: ["winner"],
+  },
+];
 
 const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
   if (!submission) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex  items-center justify-center bg-black/20 backdrop-blur p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur p-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.2 }}
-          className="relative max-h-[90vh] w-full border-4 border-black/70 shadow-2xl max-w-6xl overflow-y-auto rounded-2xl bg-[var(--surface)] "
+          className="relative max-h-[90vh] w-full max-w-7xl overflow-y-auto rounded-3xl bg-[var(--surface)] border-4 border-black/70 shadow-2xl"
         >
-          <div className="sticky top-0 z-10  bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
+          <div className="sticky top-0 z-10 bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
             <div>
-              <h2 className="text-xl  font-bold text-[var(--text)]">
+              <h2 className="text-xl font-bold text-[var(--text)]">
                 {submission.solutionName}
               </h2>
-              <div className="mt-1 flex flex-wrap items-center gap-2  text-[var(--muted)]">
-                <span className="font-mono  text-white bg-black font-medium text-md  rounded bg-[var(--bg)] px-3 py-0.5">
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-[var(--muted)]">
+                <span className="font-mono text-white bg-black text-md rounded px-3 py-0.5">
                   {submission.teamId}
                 </span>
                 <span>•</span>
@@ -55,15 +77,15 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
 
             <button
               onClick={onClose}
-              className="rounded-2xl p-2 text-white bg-red-600 hover:bg-red-700  transition"
+              className="rounded-2xl p-2 text-white bg-red-600 hover:bg-red-700 transition"
               aria-label="Close modal"
             >
               <FiX className="text-xl" />
             </button>
           </div>
 
-          <div className="flex flex-row gap-2 px-2 pb-6 pt-2">
-            <div className="space-y-2 w-3xl">
+          <div className="flex gap-2 px-2 pb-6 pt-2">
+            <div className="space-y-2  w-90">
               <Card title="Organization Details">
                 <InfoGrid
                   items={[
@@ -87,20 +109,21 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                     href={submission.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm text-blue-500 hover:underline"
+                    className="mt-3 inline-flex items-center gap-2 text-sm text-blue-500 hover:underline"
                   >
                     {submission.website} <FiExternalLink />
                   </a>
                 )}
               </Card>
+
               <Card title={`Team Members (${submission.members.length})`}>
                 <div className="flex flex-col gap-2">
                   {submission.members.map((m, idx) => (
                     <div
                       key={idx}
-                      className="rounded-xl border p-4 border-[var(--border)] bg-[var(--bg)]"
+                      className="rounded-xl border p-3 border-[var(--border)] bg-[var(--bg)]"
                     >
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-1">
                         <FiUser
                           className={
                             m.isLeader
@@ -129,13 +152,14 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                 </div>
               </Card>
             </div>
-            <div className="space-y-2 w-5xl flex flex-col">
-              {" "}
+
+            <div className="space-y-2 w-2xl">
               <Card title="Problem & Solution Summary">
-                <p className="text-sm leading-relaxed text-[var(--text)]">
+                <p className="text-sm text-[var(--text)]">
                   {submission.shortDescription}
                 </p>
               </Card>
+
               <Card title="Submitted Document">
                 {submission.idea_document ? (
                   <a
@@ -163,39 +187,48 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                 )}
               </Card>
             </div>
-
-            <div className="space-y-2 w-100">
+            <div className="space-y-2 w-120 ">
               <Card title="Current Status">
                 {updating ? (
                   <div className="flex mt-10 items-center justify-center">
-                    <div className="w-9 h-9 rounded-full animate-spin border-4 border-t-transparent border-[var(--accent)]"></div>
+                    <div className="w-9 h-9 rounded-full animate-spin border-4 border-t-transparent border-[var(--accent)]" />
                   </div>
                 ) : (
-                  <div className="space-y-1">
-                    {STATUS_OPTIONS.map((status) => {
-                      const active = submission.status === status;
-                      return (
-                        <div>
-                          <button
-                            key={status}
-                            onClick={() =>
-                              onUpdateStatus(
-                                submission._id,
-                                status,
-                                submission.category
-                              )
-                            }
-                            className={`w-full rounded cursor-pointer px-3 py-2 text-xs font-semibold border transition ${
-                              active
-                                ? `${STATUS_STYLES[status]} border-[var(--accent)]`
-                                : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"
-                            }`}
-                          >
-                            {status.replace("_", " ").toUpperCase()}
-                          </button>
+                  <div className="space-y-3">
+                    {STATUS_GROUPS.map((group) => (
+                      <div key={group.key}>
+                        <p className="mb-1 text-xs font-bold  tracking-wide text-[var(--muted)]">
+                          {group.label}
+                        </p>
+
+                        <div className="flex flex-row gap-2">
+                          {group.statuses.map((status) => {
+                            const active = submission.status === status;
+
+                            return (
+                              <button
+                                key={status}
+                                onClick={() =>
+                                  onUpdateStatus(
+                                    submission._id,
+                                    status,
+                                    submission.category
+                                  )
+                                }
+                                className={`w-full rounded-xl px-4 py-2 cursor-pointer text-sm tracking-normal  font-medium  border transition text-left
+                                  ${
+                                    active
+                                      ? `${STATUS_STYLES[status]} border-[var(--accent)]`
+                                      : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"
+                                  }`}
+                              >
+                                {status.replace(/_/g, " ").toUpperCase()}
+                              </button>
+                            );
+                          })}
                         </div>
-                      );
-                    })}
+                      </div>
+                    ))}
                   </div>
                 )}
               </Card>

@@ -68,7 +68,7 @@ const createSubmission = async (req, res) => {
       solutionName,
       shortDescription,
       idea_document,
-      status: "pending",
+      status: "Pending",
     };
 
     let submission;
