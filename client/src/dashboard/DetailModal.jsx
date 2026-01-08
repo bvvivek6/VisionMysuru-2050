@@ -87,7 +87,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                 )}
               </Card>
               <Card title={`Team Members (${submission.members.length})`}>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-2">
                   {submission.members.map((m, idx) => (
                     <div
                       key={idx}
@@ -103,7 +103,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                         />
                         <span className="font-semibold text-sm">{m.name}</span>
                         {m.isLeader && (
-                          <span className="ml-auto text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[var(--accent)] text-white">
+                          <span className="ml-auto text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-[var(--accent)] text-white">
                             Leader
                           </span>
                         )}
@@ -129,9 +129,9 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
               </Card>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-2">
               <Card title="Update Status">
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {STATUS_OPTIONS.map((status) => {
                     const active = submission.status === status;
                     return (
@@ -144,7 +144,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                             submission.category
                           )
                         }
-                        className={`w-full rounded-lg px-3 py-2 text-xs font-semibold border transition ${
+                        className={`w-full rounded  px-3 py-2 text-xs font-semibold border transition ${
                           active
                             ? "bg-[var(--accent)] text-white border-[var(--accent)]"
                             : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"
