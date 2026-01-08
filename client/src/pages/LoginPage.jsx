@@ -51,7 +51,7 @@ const LoginPage = () => {
         layout
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-2xl"
+        className="w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--surface)] p-8 "
       >
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-[var(--accent)]">

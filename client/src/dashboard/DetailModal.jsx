@@ -144,7 +144,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                             submission.category
                           )
                         }
-                        className={`w-full rounded  px-3 py-2 text-xs font-semibold border transition ${
+                        className={`w-full rounded cursor-pointer px-3 py-2 text-xs font-semibold border transition ${
                           active
                             ? "bg-[var(--accent)] text-white border-[var(--accent)]"
                             : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"

@@ -15,9 +15,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/submit" element={<SubmitIdeaPage />} />
-          <Route path="/admin/dashboard/login" element={<LoginPage />} />
+          <Route path="/admin/secure/login" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route
+              path="/admin/secure/dashboard"
+              element={<AdminDashboard />}
+            />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
