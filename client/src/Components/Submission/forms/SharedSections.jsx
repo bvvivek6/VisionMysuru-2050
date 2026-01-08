@@ -161,25 +161,37 @@ export const ProjectDetails = ({ form, set, onPickPdf }) => (
 export const SubmitButton = ({ status, confirmSubmit, cancelSubmit }) => {
   if (status.state === "confirming") {
     return (
-      <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-4 space-y-3">
-        <p className="text-sm font-bold text-yellow-800">
-          ⚠️ Please verify all details before submitting. Status cannot be
-          changed later.
-        </p>
-        <div className="flex gap-3">
+      <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 space-y-4">
+        <div className="flex items-start gap-3">
+          <div>
+            <p className="text-xl font-semibold text-amber-900">
+              ⚠️ Final Review
+            </p>
+            <p className="text-sm text-amber-800 mt-1 leading-relaxed">
+              Please carefully review all entered information like name, email,
+              phone number etc, before submitting. Once submitted, the status
+              cannot be modified.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             type="button"
             onClick={confirmSubmit}
-            className="flex-1 rounded-lg bg-emerald-600 py-2 text-sm font-bold text-white hover:bg-emerald-700"
+            className="flex-1 rounded-3xl bg-emerald-600 py-2.5 text-sm font-semibold text-white
+                 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
           >
             Confirm & Submit
           </button>
+
           <button
             type="button"
             onClick={cancelSubmit}
-            className="flex-1 rounded-lg border border-gray-300 bg-white py-2 text-sm font-bold text-gray-700 hover:bg-gray-50"
+            className="flex-1 rounded-3xl border border-gray-300 bg-white py-2.5 text-sm font-medium text-gray-700
+                 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
           >
-            Go Back
+            Review Again
           </button>
         </div>
       </div>

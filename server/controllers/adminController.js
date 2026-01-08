@@ -1,5 +1,5 @@
 import Student from "../models/Student.js";
-import Startup from "../models/Startup.js";
+import Corporate from "../models/Corporate.js";
 import NGO from "../models/NGO.js";
 import Admin from "../models/Admin.js";
 import jwt from "jsonwebtoken";
@@ -75,22 +75,22 @@ export const adminLogin = async (req, res) => {
 export const getAllSubmissions = async (req, res) => {
   try {
     const students = await Student.find().lean();
-    const startups = await Startup.find().lean();
+    const corporates = await Corporate.find().lean();
     const ngos = await NGO.find().lean();
 
     const formattedStudents = students.map((s) => ({
       ...s,
       category: "students",
     }));
-    const formattedStartups = startups.map((s) => ({
+    const formattedCorporates = corporates.map((s) => ({
       ...s,
-      category: "startups",
+      category: "corporates",
     }));
     const formattedNgos = ngos.map((s) => ({ ...s, category: "ngos" }));
 
     const allSubmissions = [
       ...formattedStudents,
-      ...formattedStartups,
+      ...formattedCorporates,
       ...formattedNgos,
     ];
 
@@ -123,13 +123,13 @@ export const updateSubmissionStatus = async (req, res) => {
         { status },
         { new: true }
       );
-    } else if (category === "Startup") {
-      updatedSubmission = await Startup.findByIdAndUpdate(
+    } else if (category === "corporates") {
+      updatedSubmission = await Corporate.findByIdAndUpdate(
         id,
         { status },
         { new: true }
       );
-    } else if (category === "NGO") {
+    } else if (category === "ngos") {
       updatedSubmission = await NGO.findByIdAndUpdate(
         id,
         { status },
@@ -143,7 +143,7 @@ export const updateSubmissionStatus = async (req, res) => {
         { new: true }
       );
       if (!updatedSubmission) {
-        updatedSubmission = await Startup.findByIdAndUpdate(
+        updatedSubmission = await Corporate.findByIdAndUpdate(
           id,
           { status },
           { new: true }

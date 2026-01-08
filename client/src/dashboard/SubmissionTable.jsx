@@ -20,7 +20,7 @@ const SubmissionTable = ({ submissions, onView }) => {
               <th className="px-6 py-4 font-semibold">Team ID</th>
               <th className="px-6 py-4 font-semibold">Category</th>
               <th className="px-6 py-4 font-semibold">
-                Organization / College
+                Org / College /Company
               </th>
               <th className="px-6 py-4 font-semibold">Project</th>
               <th className="px-6 py-4 font-semibold">Theme</th>
@@ -39,15 +39,16 @@ const SubmissionTable = ({ submissions, onView }) => {
                 </td>
                 <td className="px-6 py-4">
                   <span className="inline-flex rounded-full bg-[var(--surface-2)] px-2.5 py-0.5 text-xs font-medium text-[var(--accent)] border border-[var(--border)]">
-                    {sub.category}
+                    {sub.category.toUpperCase()}
                   </span>
                 </td>
                 <td className="px-6 py-4 font-medium text-[var(--text)]">
                   {sub.organizationName}
                   {sub.category === "students" && sub.institution && (
-                    <div className="text-xs text-[var(--muted)]">
-                      {sub.institution}
-                    </div>
+                    <div>{sub.institution}</div>
+                  )}
+                  {sub.category === "corporates" && sub.companyName && (
+                    <div>{sub.companyName}</div>
                   )}
                 </td>
                 <td className="px-6 py-4 text-[var(--text)]">

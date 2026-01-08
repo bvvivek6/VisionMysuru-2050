@@ -150,7 +150,7 @@ const AdminDashboard = () => {
             >
               <option value="All">All Categories</option>
               <option value="students">Students</option>
-              <option value="startups">Startups</option>
+              <option value="corporates">Corporates</option>
               <option value="ngos">NGOs</option>
             </select>
 

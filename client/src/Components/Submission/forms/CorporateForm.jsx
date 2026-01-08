@@ -4,14 +4,13 @@ import { useSubmissionForm, createEmptyMember } from "./useSubmissionForm";
 import { Field, TextInput } from "./FormUI";
 import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 
-const StartupForm = () => {
+const CorporateForm = () => {
   const initialState = {
-    category: CATEGORY.STARTUP,
-    organizationName: "",
+    category: CATEGORY.CORPORATE,
+    companyName: "",
+    industry: "",
     city: "Mysuru",
     leaderIndex: "0",
-    stage: "",
-    website: "",
     members: [createEmptyMember(), createEmptyMember()],
     theme: TOPIC_OPTIONS[0],
     solutionName: "",
@@ -21,7 +20,7 @@ const StartupForm = () => {
   };
 
   const validate = (form) => {
-    if (!form.organizationName.trim()) return "Organization name is required.";
+    if (!form.companyName.trim()) return "Company name is required.";
 
     const filledMembers = form.members.filter(
       (m) => m.name.trim() && m.email.trim() && m.phone.trim()
@@ -57,29 +56,23 @@ const StartupForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Startup Stage" required>
+        <Field label="Company Name" required>
           <TextInput
-            value={form.stage}
-            onChange={set("stage")}
-            placeholder="MVP / Seed"
+            value={form.companyName}
+            onChange={set("companyName")}
+            placeholder="Acme Corp"
           />
         </Field>
-        <Field label="Website">
+        <Field label="Industry">
           <TextInput
-            value={form.website}
-            onChange={set("website")}
-            placeholder="https://..."
+            value={form.industry}
+            onChange={set("industry")}
+            placeholder="IT/Software, Healthcare, etc."
           />
         </Field>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Organization Name" required>
-          <TextInput
-            value={form.organizationName}
-            onChange={set("organizationName")}
-          />
-        </Field>
         <Field label="City" required>
           <TextInput value={form.city} onChange={set("city")} />
         </Field>
@@ -104,4 +97,4 @@ const StartupForm = () => {
   );
 };
 
-export default StartupForm;
+export default CorporateForm;

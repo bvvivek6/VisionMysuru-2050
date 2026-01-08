@@ -1,7 +1,7 @@
 import fs from "fs";
 import Student from "../models/Student.js";
 import NGO from "../models/NGO.js";
-import Startup from "../models/Startup.js";
+import Corporate from "../models/Corporate.js";
 import { uploadToCloudinary } from "../cloudinary.js";
 import { randomUUID } from "crypto";
 import sendSubmissionEmail from "../utils/emailService.js";
@@ -11,6 +11,8 @@ const createSubmission = async (req, res) => {
     const {
       category,
       organizationName,
+      companyName,
+      industry,
       city,
       members,
       theme,
@@ -18,8 +20,6 @@ const createSubmission = async (req, res) => {
       shortDescription,
       institution,
       department,
-      stage,
-      website,
     } = req.body;
 
     if (!req.file) {
@@ -56,13 +56,12 @@ const createSubmission = async (req, res) => {
       teamId: `${
         category === "student"
           ? "ST"
-          : category === "startup"
-          ? "SU"
+          : category === "corporate"
+          ? "CO"
           : category === "ngo"
           ? "NG"
           : "NA"
       }-${randomUUID().slice(0, 6).toUpperCase()}`,
-      organizationName,
       city,
       members: parsedMembers,
       theme,
@@ -83,16 +82,19 @@ const createSubmission = async (req, res) => {
         });
         break;
 
-      case "startup":
-        submission = new Startup({
+      case "corporate":
+        submission = new Corporate({
           ...basePayload,
-          stage,
-          website,
+          companyName: companyName || organizationName,
+          industry,
         });
         break;
 
       case "ngo":
-        submission = new NGO(basePayload);
+        submission = new NGO({
+          ...basePayload,
+          organizationName,
+        });
         break;
 
       default:
@@ -109,7 +111,9 @@ const createSubmission = async (req, res) => {
         leader.name,
         submission.teamId,
         submission.solutionName,
-        submission.organizationName
+        submission.organizationName ||
+          submission.institution ||
+          submission.companyName
       );
     }
 
@@ -130,11 +134,11 @@ const createSubmission = async (req, res) => {
 const getWinners = async (req, res) => {
   try {
     const students = await Student.find({ status: "winner" });
-    const startups = await Startup.find({ status: "winner" });
+    const corporates = await Corporate.find({ status: "winner" });
     const ngos = await NGO.find({ status: "winner" });
 
     //combine all winners
-    const totalWinners = [...students, ...startups, ...ngos];
+    const totalWinners = [...students, ...corporates, ...ngos];
 
     res.status(200).json({ totalWinners });
   } catch (error) {

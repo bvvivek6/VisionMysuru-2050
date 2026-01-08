@@ -123,7 +123,7 @@ const TIMELINE = [
 
 const CATEGORY = {
   STUDENT: "student",
-  STARTUP: "startup",
+  CORPORATE: "corporate",
   NGO: "ngo",
 };
 

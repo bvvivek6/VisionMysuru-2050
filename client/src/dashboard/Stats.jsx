@@ -31,8 +31,8 @@ const Stats = ({ submissions }) => {
         color="border-purple-500"
       />
       <StatCard
-        title="Startups"
-        count={byCategory["startups"] || 0}
+        title="Corporates"
+        count={byCategory["corporates"] || 0}
         color="border-emerald-500"
       />
       <StatCard

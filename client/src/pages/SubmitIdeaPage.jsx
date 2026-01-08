@@ -6,13 +6,13 @@ import SubmissionHeader from "../Components/Submission/SubmissionHeader";
 import SubmissionNav from "../Components/Submission/SubmissionNav";
 import { CATEGORY } from "../constants/content";
 import StudentForm from "../Components/Submission/forms/StudentForm";
-import StartupForm from "../Components/Submission/forms/StartupForm";
+import CorporateForm from "../Components/Submission/forms/CorporateForm";
 import NGOForm from "../Components/Submission/forms/NGOForm";
 
 const Toggle = ({ active, onChange }) => {
   const tabs = [
     { key: CATEGORY.STUDENT, label: "Students" },
-    { key: CATEGORY.STARTUP, label: "Startups" },
+    { key: CATEGORY.CORPORATE, label: "Corporates" },
     { key: CATEGORY.NGO, label: "NGOs" },
   ];
 
@@ -43,8 +43,8 @@ const SubmitIdeaPage = () => {
     switch (activeCategory) {
       case CATEGORY.STUDENT:
         return <StudentForm />;
-      case CATEGORY.STARTUP:
-        return <StartupForm />;
+      case CATEGORY.CORPORATE:
+        return <CorporateForm />;
       case CATEGORY.NGO:
         return <NGOForm />;
       default:

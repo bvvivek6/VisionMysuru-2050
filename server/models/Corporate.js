@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const StartupSchema = new mongoose.Schema(
+const CorporateSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
-    stage: { type: String, required: true },
-    website: { type: String },
-    organizationName: { type: String, required: true },
+    companyName: { type: String, required: true },
+    industry: { type: String },
     city: { type: String, required: true },
     members: [
       {
@@ -38,6 +37,6 @@ const StartupSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Startup = mongoose.model("Startup", StartupSchema);
+const Corporate = mongoose.model("Corporate", CorporateSchema);
 
-export default Startup;
+export default Corporate;
