@@ -13,12 +13,20 @@ const STATUS_OPTIONS = [
   "pending",
   "shortlisted_r1",
   "shortlisted_r2",
-  "finaleist",
+  "finalist",
   "winner",
   "rejected",
 ];
+const STATUS_STYLES = {
+  pending: "bg-amber-600 border-amber-700 text-white",
+  shortlisted_r1: "bg-blue-600 border-blue-700 text-white",
+  shortlisted_r2: "bg-blue-700 border-blue-800 text-white",
+  finalist: "bg-purple-600 border-purple-700 text-white",
+  winner: "bg-emerald-700 border-emerald-800 text-white",
+  rejected: "bg-red-700 border-red-800 text-white",
+};
 
-const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
+const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
   if (!submission) return null;
 
   return (
@@ -28,7 +36,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
-          className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-xl bg-[var(--surface)] "
+          className="relative max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-xl bg-[var(--surface)] "
         >
           <div className="sticky top-0 z-10  bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
             <div>
@@ -55,8 +63,8 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 px-2 pb-6 pt-2">
-            <div className="lg:col-span-2 space-y-2">
+          <div className="flex flex-row gap-2 px-2 pb-6 pt-2">
+            <div className="space-y-2 w-3xl">
               <Card title="Organization Details">
                 <InfoGrid
                   items={[
@@ -80,14 +88,14 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                     href={submission.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:underline"
+                    className="mt-4 inline-flex items-center gap-2 text-sm text-blue-500 hover:underline"
                   >
-                    Visit Website <FiExternalLink />
+                    {submission.website} <FiExternalLink />
                   </a>
                 )}
               </Card>
               <Card title={`Team Members (${submission.members.length})`}>
-                <div className="grid sm:grid-cols-2 gap-2">
+                <div className="flex flex-col gap-2">
                   {submission.members.map((m, idx) => (
                     <div
                       key={idx}
@@ -121,42 +129,14 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                   ))}
                 </div>
               </Card>
-
+            </div>
+            <div className="space-y-2 w-5xl flex flex-col">
+              {" "}
               <Card title="Problem & Solution Summary">
                 <p className="text-sm leading-relaxed text-[var(--text)]">
                   {submission.shortDescription}
                 </p>
               </Card>
-            </div>
-
-            <div className="space-y-2">
-              <Card title="Update Status">
-                <div className="space-y-1">
-                  {STATUS_OPTIONS.map((status) => {
-                    const active = submission.status === status;
-                    return (
-                      <button
-                        key={status}
-                        onClick={() =>
-                          onUpdateStatus(
-                            submission._id,
-                            status,
-                            submission.category
-                          )
-                        }
-                        className={`w-full rounded cursor-pointer px-3 py-2 text-xs font-semibold border transition ${
-                          active
-                            ? "bg-[var(--accent)] text-white border-[var(--accent)]"
-                            : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"
-                        }`}
-                      >
-                        {status.replace("_", " ").toUpperCase()}
-                      </button>
-                    );
-                  })}
-                </div>
-              </Card>
-
               <Card title="Submitted Document">
                 {submission.idea_document ? (
                   <a
@@ -181,6 +161,43 @@ const DetailModal = ({ submission, onClose, onUpdateStatus }) => {
                   <p className="text-sm text-[var(--muted)]">
                     No document uploaded
                   </p>
+                )}
+              </Card>
+            </div>
+
+            <div className="space-y-2 w-100">
+              <Card title="Current Status">
+                {updating ? (
+                  <div className="flex mt-10 items-center justify-center">
+                    <div className="w-9 h-9 rounded-full animate-spin border-4 border-t-transparent border-[var(--accent)]"></div>
+                  </div>
+                ) : (
+                  <div className="space-y-1">
+                    {STATUS_OPTIONS.map((status) => {
+                      const active = submission.status === status;
+                      return (
+                        <div>
+                          <button
+                            key={status}
+                            onClick={() =>
+                              onUpdateStatus(
+                                submission._id,
+                                status,
+                                submission.category
+                              )
+                            }
+                            className={`w-full rounded cursor-pointer px-3 py-2 text-xs font-semibold border transition ${
+                              active
+                                ? `${STATUS_STYLES[status]} border-[var(--accent)]`
+                                : "bg-[var(--bg)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]"
+                            }`}
+                          >
+                            {status.replace("_", " ").toUpperCase()}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
                 )}
               </Card>
             </div>

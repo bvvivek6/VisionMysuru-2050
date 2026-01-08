@@ -16,6 +16,7 @@ const AdminDashboard = () => {
     theme: "All",
     status: "All",
   });
+  const [updating, setUpdating] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const navigate = useNavigate();
 
@@ -61,6 +62,7 @@ const AdminDashboard = () => {
   const updateStatus = async (id, status, category) => {
     try {
       const token = localStorage.getItem("adminToken");
+      setUpdating(true);
       await axios.patch(
         `/api/v1/admin/submissions/${id}/status`,
         { status, category },
@@ -77,6 +79,7 @@ const AdminDashboard = () => {
       }
 
       toast.success(`Status updated to ${status}`);
+      setUpdating(false);
     } catch (error) {
       toast.error("Failed to update status", error.message);
     }
@@ -132,11 +135,10 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+      <main className=" px-4 py-8 sm:px-6 lg:px-8 space-y-4">
         <Stats submissions={submissions} />
-
-        <section className="flex flex-col gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-3">
+        <section className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-2">
             <FiFilter className="text-[var(--muted)]" />
 
             <select
@@ -182,7 +184,7 @@ const AdminDashboard = () => {
               <option value="winner">Winner</option>
               <option value="rejected">Rejected</option>
             </select>
-            <div className=" border border-[var(--border)] bg-amber-200 px-4 py-2 rounded-xl">
+            <div className=" border border-[var(--border)] bg-amber-200 px-4 py-1 rounded-xl">
               <p>
                 Count:{" "}
                 <span className="font-bold text-sm ">
@@ -204,6 +206,7 @@ const AdminDashboard = () => {
           submission={selectedSubmission}
           onClose={() => setSelectedSubmission(null)}
           onUpdateStatus={updateStatus}
+          updating={updating}
         />
       )}
     </div>
