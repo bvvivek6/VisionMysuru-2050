@@ -3,6 +3,7 @@ import { FiCheckCircle, FiTrash, FiPlus } from "react-icons/fi";
 import { Field, TextInput, TextArea, Select } from "./FormUI";
 import { TOPIC_OPTIONS } from "../../../constants/content";
 import { toast } from "react-hot-toast";
+
 export const StatusMessage = ({ status }) => {
   if (!status.message) return null;
   return (
@@ -121,12 +122,25 @@ export const ProjectDetails = ({ form, set, onPickPdf }) => (
       />
     </Field>
 
-    <Field label="Upload PDF (Max 2MB)" required hint=".pdf only">
+    <Field
+      label="Upload PDF"
+      required
+      hint="PDF only · Max 2MB"
+      className="space-y-2"
+    >
       <input
         type="file"
-        accept=".pdf"
+        accept="application/pdf"
         onChange={onPickPdf}
-        className="text-sm block w-full"
+        className="
+      block w-full text-sm
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-md file:border-0
+      file:bg-gray-100 file:text-gray-700
+      hover:file:bg-gray-200
+      border border-gray-300 rounded-md
+      focus:outline-none focus:ring-2 focus:ring-gray-400
+    "
       />
     </Field>
 

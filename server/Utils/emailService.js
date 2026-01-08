@@ -48,7 +48,7 @@ const sendSubmissionEmail = async (
                 <p style="margin: 0; font-size: 12px; color: #92400e; text-transform: uppercase; letter-spacing: 0.05em;">
                     Your Official Team ID
                 </p>
-                <p style="margin: 6px 0 0; font-size: 28px; font-weight: bold; color: #7c2d12; letter-spacing: 1.5px;">
+                <p style="margin: 6px 0 0; font-size: 28px; font-weight: bold; color: #7c2d12;">
                     ${teamId}
                 </p>
                 <p style="margin: 6px 0 0; font-size: 12px; color: #92400e;">
