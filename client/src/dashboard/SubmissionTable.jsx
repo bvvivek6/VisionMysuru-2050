@@ -19,9 +19,7 @@ const SubmissionTable = ({ submissions, onView }) => {
             <tr>
               <th className="px-6 py-4 font-semibold">Team ID</th>
               <th className="px-6 py-4 font-semibold">Category</th>
-              <th className="px-6 py-4 font-semibold">
-                Org / College /Company
-              </th>
+              <th className="px-6 py-4 font-semibold">Org /College /Company</th>
               <th className="px-6 py-4 font-semibold">Project</th>
               <th className="px-6 py-4 font-semibold">Theme</th>
               <th className="px-6 py-4 font-semibold">Status</th>
@@ -34,15 +32,13 @@ const SubmissionTable = ({ submissions, onView }) => {
                 key={sub._id}
                 className="hover:bg-[var(--surface-2)] transition-colors"
               >
-                <td className="px-6 py-4 font-medium font-mono text-[var(--text)]">
-                  {sub.teamId}
-                </td>
+                <td className="px-6 py-4 font-medium text-sm ">{sub.teamId}</td>
                 <td className="px-6 py-4">
-                  <span className="inline-flex rounded-full bg-[var(--surface-2)] px-2.5 py-0.5 text-xs font-medium text-[var(--accent)] border border-[var(--border)]">
+                  <span className="inline-flex  px-2.5 py-0.5 text-sm font-medium text-[var(--text)] ">
                     {sub.category.toUpperCase()}
                   </span>
                 </td>
-                <td className="px-6 py-4 font-medium text-[var(--text)]">
+                <td className="px-6 py-4 font-semibold text-black">
                   {sub.organizationName}
                   {sub.category === "students" && sub.institution && (
                     <div>{sub.institution}</div>
@@ -55,7 +51,7 @@ const SubmissionTable = ({ submissions, onView }) => {
                   <div className="font-semibold">{sub.solutionName}</div>
                 </td>
                 <td
-                  className="px-6 py-4 text-[var(--muted)] max-w-xs truncate"
+                  className="px-6 py-4 text-black font-semibold max-w-xs truncate"
                   title={sub.theme}
                 >
                   {sub.theme}

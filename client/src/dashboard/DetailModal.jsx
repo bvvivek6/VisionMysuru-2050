@@ -49,7 +49,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                   {submission.teamId}
                 </span>
                 <span>•</span>
-                <span className="uppercase text-sm">{submission.theme}</span>
+                <span className="font-medium text-lg">{submission.theme}</span>
               </div>
             </div>
 

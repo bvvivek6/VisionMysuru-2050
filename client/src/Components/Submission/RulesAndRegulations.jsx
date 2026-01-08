@@ -23,14 +23,18 @@ const RulesAndRegulations = () => {
           <h2 className="mt-2 text-2xl font-bold text-[var(--text)]">
             Category Guidelines
           </h2>
+          <p className="mt-2 text-sm text-[var(--muted)] leading-tight">
+            Read the detailed rules and regulations for each category before
+            submitting your idea.
+          </p>
         </header>
 
-        <div className="flex flex-wrap gap-2  pb-1">
+        <div className="flex overflow-x-auto whitespace-nowrap pb-3">
           {GUIDELINES.categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`px-4 py-2 text-md transition-colors relative ${
+              className={`px-4 py-3 text-start text-sm md:text-md transition-colors relative ${
                 activeTab === cat.id
                   ? "text-[var(--accent)] font-bold bg-[var(--accent-soft)]"
                   : "text-[var(--muted)] hover:text-[var(--text)]"
@@ -157,7 +161,7 @@ const RulesAndRegulations = () => {
 
           <div className="mt-6 flex  font-bold items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
             {" "}
-            Submission File - 
+            Submission File -
             <span className="text-md font-medium text-[var(--muted)]">
               PDF • Max 2MB
             </span>

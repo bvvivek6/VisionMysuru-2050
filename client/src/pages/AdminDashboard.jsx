@@ -119,13 +119,6 @@ const AdminDashboard = () => {
           </div>
           <div className="flex items-center gap-4">
             <button
-              onClick={fetchSubmissions}
-              className="rounded-full p-2 hover:bg-[var(--bg)] text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-              title="Refresh Data"
-            >
-              <FiRefreshCw />
-            </button>
-            <button
               onClick={handleLogout}
               className="flex items-center gap-2 rounded-lg bg-red-50 px-4 py-2 text-sm font-semibold text-white hover:bg-red-100 dark:bg-red-800 "
             >

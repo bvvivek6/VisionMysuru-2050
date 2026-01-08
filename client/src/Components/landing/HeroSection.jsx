@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 const HeroSection = () => {
   return (
     <section className="relative min-h-[92vh] overflow-hidden">
-      <Confetti numberOfPieces={500} recycle={false} gravity={0.4} />
+      <Confetti numberOfPieces={400} recycle={false} gravity={0.2} />
       <div className="absolute border-b-6 border-[var(--accent)] inset-0 z-0">
         <motion.img
           src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551010/mysuru2_vsbpnf.jpg"
@@ -22,14 +22,27 @@ const HeroSection = () => {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 sm:px-6">
         <div className="max-w-2xl text-start">
+          <div>
+            <img
+              src="/logo_final.png"
+              alt="Vision Mysuru 2050 Logo"
+              className="h-17 rounded-full w-auto mb-4"
+            />
+          </div>
           <h1 className="flex flex-col gap-2 font-bold oswald uppercase tracking-tighter text-white text-4xl leading-tight md:text-6xl">
             <span className="inline-block w-fit  bg-white px-3  text-[var(--accent)]">
               Vision Mysuru 2050
             </span>
-            <span className="text-5xl">Build the future of Mysuru</span>
+            <span className="text-3xl md:text-5xl">
+              Build the future of Mysuru
+            </span>
           </h1>
+          <p className="mt-6 text-lg text-white/90 leading-tight">
+            Mission Statement: A city-wide strategic initiative to draft the
+            development blueprint for Mysuru's next 25 years
+          </p>
 
-          <div className="mt-25 md:mt-20 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-20 md:mt-20 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/submit"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--primary-hover)]"

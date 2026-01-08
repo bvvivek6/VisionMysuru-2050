@@ -25,13 +25,16 @@ const CorporateSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        "pending",
-        "shortlisted_r1",
-        "shortlisted_r2",
+        "Pending",
+        "screening_rejected",
+        "screening_shortlisted",
+        "r1_eliminated",
+        "r1_shortlisted",
+        "r2_eliminated",
         "finalist",
         "winner",
       ],
-      default: "pending",
+      default: "Pending",
     },
   },
   { timestamps: true }
