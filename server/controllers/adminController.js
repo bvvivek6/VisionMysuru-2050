@@ -80,13 +80,13 @@ export const getAllSubmissions = async (req, res) => {
 
     const formattedStudents = students.map((s) => ({
       ...s,
-      category: "College",
+      category: "students",
     }));
     const formattedStartups = startups.map((s) => ({
       ...s,
-      category: "Startup",
+      category: "startups",
     }));
-    const formattedNgos = ngos.map((s) => ({ ...s, category: "NGO" }));
+    const formattedNgos = ngos.map((s) => ({ ...s, category: "ngos" }));
 
     const allSubmissions = [
       ...formattedStudents,
@@ -117,7 +117,7 @@ export const updateSubmissionStatus = async (req, res) => {
     let updatedSubmission;
 
     // Determine which collection to update
-    if (category === "College" || category === "Student") {
+    if (category === "students") {
       updatedSubmission = await Student.findByIdAndUpdate(
         id,
         { status },

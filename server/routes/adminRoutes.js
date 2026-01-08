@@ -11,7 +11,7 @@ const router = express.Router();
 
 // Public route for login and registration
 router.post("/login", adminLogin);
-router.post("/register", registerAdmin); // Ensure this is secured or removed in production
+router.post("/register", registerAdmin); 
 
 // Protected routes
 router.get("/submissions", auth, getAllSubmissions);

@@ -3,6 +3,7 @@ import Student from "../models/Student.js";
 import NGO from "../models/NGO.js";
 import Startup from "../models/Startup.js";
 import { uploadToCloudinary } from "../cloudinary.js";
+import { randomUUID } from "crypto";
 
 const createSubmission = async (req, res) => {
   try {
@@ -51,7 +52,15 @@ const createSubmission = async (req, res) => {
     };
 
     const basePayload = {
-      teamId: `TEAM-${Date.now()}`,
+      teamId: `${
+        category === "student"
+          ? "ST"
+          : category === "startup"
+          ? "SU"
+          : category === "ngo"
+          ? "NG"
+          : "NA"
+      }-${randomUUID().slice(0, 6).toUpperCase()}`,
       organizationName,
       city,
       members: parsedMembers,
@@ -65,7 +74,7 @@ const createSubmission = async (req, res) => {
     let submission;
 
     switch (category) {
-      case "college":
+      case "student":
         submission = new Student({
           ...basePayload,
           institution,

@@ -6,7 +6,7 @@ import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 
 const StudentForm = () => {
   const initialState = {
-    category: CATEGORY.COLLEGE,
+    category: CATEGORY.STUDENT,
     organizationName: "",
     city: "Mysuru",
     leaderIndex: "0",

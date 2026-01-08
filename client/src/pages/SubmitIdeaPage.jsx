@@ -11,7 +11,7 @@ import NGOForm from "../Components/Submission/forms/NGOForm";
 
 const Toggle = ({ active, onChange }) => {
   const tabs = [
-    { key: CATEGORY.COLLEGE, label: "Students" },
+    { key: CATEGORY.STUDENT, label: "Students" },
     { key: CATEGORY.STARTUP, label: "Startups" },
     { key: CATEGORY.NGO, label: "NGOs" },
   ];
@@ -37,11 +37,11 @@ const Toggle = ({ active, onChange }) => {
 };
 
 const SubmitIdeaPage = () => {
-  const [activeCategory, setActiveCategory] = useState(CATEGORY.COLLEGE);
+  const [activeCategory, setActiveCategory] = useState(CATEGORY.STUDENT);
 
   const renderForm = () => {
     switch (activeCategory) {
-      case CATEGORY.COLLEGE:
+      case CATEGORY.STUDENT:
         return <StudentForm />;
       case CATEGORY.STARTUP:
         return <StartupForm />;

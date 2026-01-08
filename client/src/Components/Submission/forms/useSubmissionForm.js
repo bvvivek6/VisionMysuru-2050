@@ -98,6 +98,8 @@ export const useSubmissionForm = (initialState, validateFn) => {
     try {
       await axios.post("/api/v1/submissions", buildFormData());
       setStatusWithToast("success", "Idea submitted successfully!", "success");
+      //clear the form
+      setForm(initialState);
     } catch (err) {
       setStatusWithToast(
         "error",
