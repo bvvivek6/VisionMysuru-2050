@@ -10,6 +10,7 @@ const createSubmission = async (req, res) => {
   try {
     const {
       category,
+      teamName,
       organizationName,
       companyName,
       industry,
@@ -62,6 +63,7 @@ const createSubmission = async (req, res) => {
           ? "NG"
           : "NA"
       }-${randomUUID().slice(0, 6).toUpperCase()}`,
+      teamName,
       city,
       members: parsedMembers,
       theme,
@@ -110,6 +112,7 @@ const createSubmission = async (req, res) => {
         leader.email,
         leader.name,
         submission.teamId,
+        submission.teamName,
         submission.solutionName,
         submission.organizationName ||
           submission.institution ||

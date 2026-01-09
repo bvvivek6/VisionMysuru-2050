@@ -6,6 +6,7 @@ const sendSubmissionEmail = async (
   leaderEmail,
   leaderName,
   teamId,
+  teamName,
   solutionName,
   organizationName
 ) => {
@@ -35,6 +36,10 @@ const sendSubmissionEmail = async (
             <p style="font-size: 12px; color: #92400e;">Your Team ID</p>
             <p style="font-size: 28px; font-weight: bold; color: #7c2d12;">
               ${teamId}
+            </p>
+            <p style="font-size: 12px; color: #92400e; margin-top: 10px;">Team Name</p>
+            <p style="font-size: 20px; font-weight: bold; color: #7c2d12;">
+              ${teamName}
             </p>
           </div>
 

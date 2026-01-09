@@ -20,6 +20,7 @@ const SubmissionTable = ({ submissions, onView }) => {
           <thead className="bg-[var(--accent)]/80 text-white">
             <tr>
               <th className="px-6 py-4 font-semibold">Team ID</th>
+              <th className="px-6 py-4 font-semibold">Team Name</th>
               <th className="px-6 py-4 font-semibold">Category</th>
               <th className="px-6 py-4 font-semibold">Org /College /Company</th>
               <th className="px-6 py-4 font-semibold">Project</th>
@@ -35,6 +36,9 @@ const SubmissionTable = ({ submissions, onView }) => {
                 className="hover:bg-[var(--surface-2)] transition-colors"
               >
                 <td className="px-6 py-4 font-medium text-sm ">{sub.teamId}</td>
+                <td className="px-6 py-4 font-medium text-sm ">
+                  {sub.teamName}
+                </td>
                 <td className="px-6 py-4">
                   <span className="inline-flex  px-2.5 py-0.5 text-sm font-medium text-[var(--text)] ">
                     {sub.category.toUpperCase()}
@@ -80,7 +84,7 @@ const SubmissionTable = ({ submissions, onView }) => {
             {submissions.length === 0 && (
               <tr>
                 <td
-                  colSpan="7"
+                  colSpan="8"
                   className="px-6 py-12 text-center text-[var(--muted)]"
                 >
                   No submissions found matching your filters.

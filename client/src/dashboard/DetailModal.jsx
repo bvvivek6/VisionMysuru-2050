@@ -71,6 +71,10 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                   {submission.teamId}
                 </span>
                 <span>•</span>
+                <span className="font-bold text-black border-2 border-dashed border-black px-2 py-0.5 rounded">
+                  {submission.teamName}
+                </span>
+                <span>•</span>
                 <span className="font-medium text-lg">{submission.theme}</span>
               </div>
             </div>

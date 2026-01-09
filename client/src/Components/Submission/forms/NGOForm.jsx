@@ -7,6 +7,7 @@ import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 const NGOForm = () => {
   const initialState = {
     category: CATEGORY.NGO,
+    teamName: "",
     organizationName: "",
     city: "Mysuru",
     leaderIndex: "0",
@@ -19,6 +20,7 @@ const NGOForm = () => {
   };
 
   const validate = (form) => {
+    if (!form.teamName.trim()) return "Team name is required.";
     if (!form.organizationName.trim()) return "Organization name is required.";
 
     const filledMembers = form.members.filter(
@@ -55,6 +57,13 @@ const NGOForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Team Name" required>
+          <TextInput
+            value={form.teamName}
+            onChange={set("teamName")}
+            placeholder="Enter your team name"
+          />
+        </Field>
         <Field label="Organization Name" required>
           <TextInput
             value={form.organizationName}

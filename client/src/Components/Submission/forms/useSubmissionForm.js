@@ -9,16 +9,12 @@ export const useSubmissionForm = (initialState, validateFn) => {
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  /* -------------------- helpers -------------------- */
-
   const updateForm = (patch) => setForm((prev) => ({ ...prev, ...patch }));
 
   const setStatusWithToast = (state, message, type = "error") => {
     setStatus({ state, message });
     toast[type](message);
   };
-
-  /* -------------------- field setters -------------------- */
 
   const setField = (key) => (e) =>
     updateForm({
@@ -31,8 +27,6 @@ export const useSubmissionForm = (initialState, validateFn) => {
       members[index] = { ...members[index], [key]: e.target.value };
       return { ...prev, members };
     });
-
-  /* -------------------- members -------------------- */
 
   const addMember = () =>
     form.members.length < 3 &&
@@ -50,8 +44,6 @@ export const useSubmissionForm = (initialState, validateFn) => {
 
   const setLeader = (index) => updateForm({ leaderIndex: index.toString() });
 
-  /* -------------------- file -------------------- */
-
   const onPickPdf = ({ target }) => {
     const file = target?.files?.[0];
     if (!file) return;
@@ -65,8 +57,6 @@ export const useSubmissionForm = (initialState, validateFn) => {
     updateForm({ pdfFile: file });
     setStatus({ state: "idle", message: "" });
   };
-
-  /* -------------------- submit -------------------- */
 
   const buildFormData = () => {
     const fd = new FormData();
@@ -82,6 +72,7 @@ export const useSubmissionForm = (initialState, validateFn) => {
       JSON.stringify(
         form.members.map((m, i) => ({
           ...m,
+          email: m.email?.toLowerCase().trim(),
           isLeader: i === +form.leaderIndex,
         }))
       )
@@ -96,12 +87,13 @@ export const useSubmissionForm = (initialState, validateFn) => {
     setStatus({ state: "submitting", message: "Submitting..." });
 
     try {
-      await api.post(
-        "/api/v1/submissions",
-        buildFormData()
+      const { data } = await api.post("/api/v1/submissions", buildFormData());
+      const teamId = data?.submission?.teamId;
+      setStatusWithToast(
+        "success",
+        `Idea submitted successfully! Team ID: ${teamId}`,
+        "success"
       );
-      setStatusWithToast("success", "Idea submitted successfully!", "success");
-      //clear the form
       setForm(initialState);
     } catch (err) {
       setStatusWithToast(

@@ -7,6 +7,7 @@ import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
 const CorporateForm = () => {
   const initialState = {
     category: CATEGORY.CORPORATE,
+    teamName: "",
     companyName: "",
     industry: "",
     city: "Mysuru",
@@ -20,6 +21,7 @@ const CorporateForm = () => {
   };
 
   const validate = (form) => {
+    if (!form.teamName.trim()) return "Team name is required.";
     if (!form.companyName.trim()) return "Company name is required.";
 
     const filledMembers = form.members.filter(
@@ -56,6 +58,13 @@ const CorporateForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Team Name" required>
+          <TextInput
+            value={form.teamName}
+            onChange={set("teamName")}
+            placeholder="Enter your team name"
+          />
+        </Field>
         <Field label="Company Name" required>
           <TextInput
             value={form.companyName}

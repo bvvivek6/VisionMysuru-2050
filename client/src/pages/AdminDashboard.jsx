@@ -41,8 +41,8 @@ const TableSkeleton = () => (
   <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]">
     <div className="space-y-4 p-4">
       {Array.from({ length: 8 }).map((_, i) => (
-        <div key={i} className="grid grid-cols-6 gap-4">
-          {Array.from({ length: 6 }).map((__, j) => (
+        <div key={i} className="grid grid-cols-7 gap-4">
+          {Array.from({ length: 7 }).map((__, j) => (
             <Skeleton key={j} className="h-8 w-full" />
           ))}
         </div>
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] dm-sans">
       <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex  items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div>
             <h1 className="text-xl font-bold text-[var(--text)]">
               Admin Dashboard
@@ -175,7 +175,7 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <main className=" px-4 py-8 sm:px-6 lg:px-8 max-w-8xl mx-auto space-y-4">
+      <main className="py-8 px-2 space-y-4">
         <Stats submissions={submissions} />
         <section className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2">

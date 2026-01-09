@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const NGOSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
+    teamName: { type: String, required: true },
     organizationName: { type: String, required: true },
     city: { type: String, required: true },
     members: [

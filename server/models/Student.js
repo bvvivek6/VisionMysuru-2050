@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const StudentSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
+    teamName: { type: String, required: true },
     institution: { type: String, required: true },
     department: { type: String, required: true },
     city: { type: String, required: true },

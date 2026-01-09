@@ -71,7 +71,7 @@ export const TeamMembers = ({
             placeholder="Name"
           />
           <TextInput
-            value={m.email}
+            value={m.email.toLowerCase()}
             onChange={setMember(idx, "email")}
             placeholder="Email"
             type="email"

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const CorporateSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
+    teamName: { type: String, required: true },
     companyName: { type: String, required: true },
     industry: { type: String },
     city: { type: String, required: true },
