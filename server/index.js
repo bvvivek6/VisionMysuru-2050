@@ -3,9 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import connectDB from "./utils/db.js";
 import submissionRoutes from "./routes/submissionRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -15,13 +15,20 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.json());
-
-connectDB();
+const MONGO_URI = process.env.MONGO_URI;
 
 app.use("/api/v1/submissions", submissionRoutes);
 app.use("/api/v1/winners", submissionRoutes);
 app.use("/api/v1/admin", adminRoutes);
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error", err);
+    process.exit(1);
+  });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+export default app;
