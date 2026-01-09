@@ -212,7 +212,7 @@ export const SuccessModal = ({ isOpen, onClose, data }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 h-screen flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-md  rounded-4xl border-green-800 border-4   bg-gradient-to-b from-emerald-300 to-emerald-800 p-4 shadow-xl animate-in fade-in zoom-in duration-200">
+      <div className="w-full max-w-md  rounded-4xl border-green-800 border-2   bg-gradient-to-b from-emerald-200 to-emerald-800 p-4 shadow-xl animate-in fade-in zoom-in duration-200">
         <div className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center text-center">
             <div className="mb-4 rounded-full bg-emerald-200 p-3 text-emerald-600">
@@ -256,8 +256,8 @@ export const SuccessModal = ({ isOpen, onClose, data }) => {
             </div>
           </div>
           <div className="text-sm mt-4 text-white">
-            Please <strong>remember your Team ID</strong>. It will be required
-            for all future communication and evaluation processes.
+            Please <strong>remember your ID</strong>. It will be required for
+            all future communication and evaluation processes.
           </div>
 
           <button
