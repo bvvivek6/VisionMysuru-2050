@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FiLock, FiUser, FiKey } from "react-icons/fi";
@@ -24,12 +24,12 @@ const LoginPage = () => {
     setLoading(true);
     try {
       if (isRegistering) {
-        await axios.post("/api/v1/admin/register", credentials);
+        await api.post("/api/v1/admin/register", credentials);
         toast.success("Admin registered successfully! Please login.");
         setIsRegistering(false);
         setCredentials((prev) => ({ ...prev, adminSecret: "" }));
       } else {
-        const { data } = await axios.post("/api/v1/admin/login", {
+        const { data } = await api.post("/api/v1/admin/login", {
           username: credentials.username,
           password: credentials.password,
         });

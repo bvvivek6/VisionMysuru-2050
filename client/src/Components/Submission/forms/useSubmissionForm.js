@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../../../utils/api";
 import { toast } from "react-hot-toast";
 
 const MAX_PDF_BYTES = 2 * 1024 * 1024;
@@ -96,7 +96,10 @@ export const useSubmissionForm = (initialState, validateFn) => {
     setStatus({ state: "submitting", message: "Submitting..." });
 
     try {
-      await axios.post("/api/v1/submissions", buildFormData());
+      await api.post(
+        "/api/v1/submissions",
+        buildFormData()
+      );
       setStatusWithToast("success", "Idea submitted successfully!", "success");
       //clear the form
       setForm(initialState);

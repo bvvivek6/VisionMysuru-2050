@@ -9,10 +9,21 @@ import mongoose from "mongoose";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 5000;
 const app = express();
-const PORT = process.env.PORT;
+app.use(
+  cors({
+    origin: [
+      "https://vision-mysuru-2050.vercel.app",
+      "http://localhost:5000",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(helmet());
-app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 const MONGO_URI = process.env.MONGO_URI;

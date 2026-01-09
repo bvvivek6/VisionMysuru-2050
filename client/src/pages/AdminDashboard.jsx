@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FiLogOut, FiSearch, FiFilter, FiRefreshCw } from "react-icons/fi";
@@ -30,9 +30,7 @@ const AdminDashboard = () => {
         return;
       }
 
-      const { data } = await axios.get("/api/v1/admin/submissions", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data } = await api.get("/api/v1/admin/submissions");
       setSubmissions(data);
     } catch (error) {
       console.error(error);
@@ -61,13 +59,11 @@ const AdminDashboard = () => {
   // Update status
   const updateStatus = async (id, status, category) => {
     try {
-      const token = localStorage.getItem("adminToken");
       setUpdating(true);
-      await axios.patch(
-        `/api/v1/admin/submissions/${id}/status`,
-        { status, category },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await api.patch(`/api/v1/admin/submissions/${id}/status`, {
+        status,
+        category,
+      });
 
       setSubmissions((prev) =>
         prev.map((sub) => (sub._id === id ? { ...sub, status } : sub))
@@ -171,11 +167,15 @@ const AdminDashboard = () => {
             >
               <option value="All">All Statuses</option>
               <option value="pending">Pending</option>
-              <option value="shortlisted_r1">Shortlisted R1</option>
-              <option value="shortlisted_r2">Shortlisted R2</option>
-              <option value="finaleist">Finalist</option>
+              <option value="screening_shortlisted">
+                Screening-Shortlisted
+              </option>
+              <option value="screening_rejected">Screening-Rejected</option>
+              <option value="r1_shortlisted">R1 Shortlisted</option>
+              <option value="r1_eliminated">R1 Eliminated</option>
+              <option value="r2_eliminated">R2 Eliminated</option>
+              <option value="finalist">Finalist</option>
               <option value="winner">Winner</option>
-              <option value="rejected">Rejected</option>
             </select>
             <div className=" border border-[var(--border)] bg-amber-200 px-4 py-1 rounded-xl">
               <p>
