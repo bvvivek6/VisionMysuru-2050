@@ -199,7 +199,11 @@ export const SubmitButton = ({ status, confirmSubmit, cancelSubmit }) => {
       disabled={status.state === "submitting" || status.state === "success"}
       className="w-full rounded-xl bg-[var(--accent)] py-3 font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
     >
-      {status.state === "submitting" ? "Submitting..." : "Submit Idea"}
+      {status.state === "submitting" ? (
+        <div className="w-4 h-4 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
+      ) : (
+        "Submit Idea"
+      )}
     </button>
   );
 };

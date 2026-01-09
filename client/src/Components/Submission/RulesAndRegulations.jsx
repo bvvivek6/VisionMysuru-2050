@@ -166,6 +166,14 @@ const RulesAndRegulations = () => {
               PDF • Max 2MB
             </span>
           </div>
+          <div className="mt-2 flex  font-medium items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
+            {" "}
+            Make sure that - 
+            <span className="italic font-bold text-lg">
+              leader's details like email, phone -{" "}
+            </span>{" "}
+            are valid and accessible.
+          </div>
         </div>
       </main>
     </section>

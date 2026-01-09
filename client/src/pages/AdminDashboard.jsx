@@ -2,11 +2,54 @@ import { useState, useEffect, useMemo } from "react";
 import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { FiLogOut, FiSearch, FiFilter, FiRefreshCw } from "react-icons/fi";
+import { FiLogOut, FiFilter } from "react-icons/fi";
 import Stats from "../dashboard/Stats";
 import SubmissionTable from "../dashboard/SubmissionTable";
 import DetailModal from "../dashboard/DetailModal";
-import { CATEGORY, TOPIC_OPTIONS } from "../constants/content";
+import { TOPIC_OPTIONS } from "../constants/content";
+
+const Skeleton = ({ className = "" }) => (
+  <div
+    className={`animate-pulse rounded-md bg-[var(--border)]/60 ${className}`}
+    aria-hidden="true"
+  />
+);
+
+const StatsSkeleton = () => (
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    {Array.from({ length: 3 }).map((_, i) => (
+      <div
+        key={i}
+        className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"
+      >
+        <Skeleton className="h-10 w-24 mb-2" />
+        <Skeleton className="h-10 w-16" />
+      </div>
+    ))}
+  </div>
+);
+
+const FiltersSkeleton = () => (
+  <div className="flex flex-wrap items-center gap-3">
+    {Array.from({ length: 4 }).map((_, i) => (
+      <Skeleton key={i} className="h-8 w-42 rounded-lg" />
+    ))}
+  </div>
+);
+
+const TableSkeleton = () => (
+  <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]">
+    <div className="space-y-4 p-4">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="grid grid-cols-6 gap-4">
+          {Array.from({ length: 6 }).map((__, j) => (
+            <Skeleton key={j} className="h-8 w-full" />
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const AdminDashboard = () => {
   const [submissions, setSubmissions] = useState([]);
@@ -96,8 +139,16 @@ const AdminDashboard = () => {
 
   if (loading)
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[var(--bg)]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[var(--accent)] border-t-transparent"></div>
+      <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] dm-sans">
+        <header className="border-b border-[var(--border)] bg-[var(--surface)] px-6 py-4">
+          <Skeleton className="h-10 w-48 mb-2" />
+        </header>
+
+        <main className="mx-auto max-w-7xl space-y-6 mt-4">
+          <StatsSkeleton />
+          <FiltersSkeleton />
+          <TableSkeleton />
+        </main>
       </div>
     );
 
