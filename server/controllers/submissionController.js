@@ -4,7 +4,7 @@ import NGO from "../models/NGO.js";
 import Corporate from "../models/Corporate.js";
 import { uploadToCloudinary } from "../cloudinary.js";
 import { randomUUID } from "crypto";
-import sendSubmissionEmail from "../utils/emailService.js";
+import sendSubmissionEmail from "../emailService.js";
 
 const createSubmission = async (req, res) => {
   try {
