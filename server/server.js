@@ -22,6 +22,17 @@ app.use("/api/v1/submissions", submissionRoutes);
 app.use("/api/v1/winners", submissionRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.get("/", (req, res) => {
+  res.json({ message: "Vision Mysuru 2050 API is running" });
 });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+    error: process.env.NODE_ENV === "development" ? err.message : undefined,
+  });
+});
+
+export default app;
