@@ -17,18 +17,28 @@ app.use(morgan("dev"));
 app.use(express.json());
 const MONGO_URI = process.env.MONGO_URI;
 
+let isConnected = false;
+async function connectDB() {
+  try {
+    await mongoose.connect(MONGO_URI, {
+      dbName: "vision-mysuru",
+    });
+    isConnected = true;
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err.message);
+    throw err;
+  }
+}
+app.use(async (req, res, next) => {
+  if (!isConnected) {
+    await connectDB();
+  }
+  next();
+});
+
 app.use("/api/v1/submissions", submissionRoutes);
 app.use("/api/v1/winners", submissionRoutes);
 app.use("/api/v1/admin", adminRoutes);
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error", err);
-    process.exit(1);
-  });
 
 export default app;
