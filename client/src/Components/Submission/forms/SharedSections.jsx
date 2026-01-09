@@ -207,3 +207,67 @@ export const SubmitButton = ({ status, confirmSubmit, cancelSubmit }) => {
     </button>
   );
 };
+
+export const SuccessModal = ({ isOpen, onClose, data }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-50 h-screen flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+      <div className="w-full max-w-md  rounded-4xl border-green-800 border-4   bg-gradient-to-b from-emerald-300 to-emerald-800 p-4 shadow-xl animate-in fade-in zoom-in duration-200">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4 rounded-full bg-emerald-200 p-3 text-emerald-600">
+              <FiCheckCircle size={48} />
+            </div>
+            <h3 className="text-2xl font-bold text-green-900">
+              Submission Successful!
+            </h3>
+            <p className="text-green-200">
+              Your idea has been successfully submitted.
+            </p>
+          </div>
+          <div className="flex flex-row justify-between  mt-4 font-bold   rounded-full text-xl  ">
+            <span className="items-center pr-2 pl-3 rounded-l-full bg-white/80 py-1">
+              ID :
+            </span>
+            <span className="bg-green-200/80 px-2 py-1  text-green-900 rounded-r-full">
+              {data?.teamId}
+            </span>
+          </div>
+
+          <div className="mt-6 w-full space-y-3 rounded-xl bg-green-100/40 p-4 border border-green-800 text-left">
+            <div className="flex justify-between border-b pb-2">
+              <span className="text-sm font-medium text-gray-700">
+                Team Name
+              </span>
+              <span className="font-semibold text-gray-900 text-right">
+                {data?.teamName}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-sm font-medium text-gray-700">
+                Solution Name
+              </span>
+              <span
+                className="font-medium text-gray-900 truncate max-w-[200px] text-right"
+                title={data?.solutionName}
+              >
+                {data?.solutionName}
+              </span>
+            </div>
+          </div>
+          <div className="text-sm mt-4 text-white">
+            Please <strong>remember your Team ID</strong>. It will be required
+            for all future communication and evaluation processes.
+          </div>
+
+          <button
+            onClick={onClose}
+            className="mt-6 w-full rounded-b-3xl rounded-t-lg bg-green-600 py-3 font-bold text-white transition-opacity hover:opacity-90"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

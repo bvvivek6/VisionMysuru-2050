@@ -300,6 +300,44 @@ const GUIDELINES = {
     },
   ],
 };
+const STATUS_STYLES = {
+  Pending: "bg-yellow-100 text-yellow-800 border-yellow-200",
+  screening_shortlisted: "bg-blue-100 text-blue-800 border-blue-200",
+  screening_rejected: "bg-red-100 text-red-800 border-red-200",
+  r1_shortlisted: "bg-indigo-100 text-indigo-800 border-indigo-200",
+  r1_eliminated: "bg-red-100 text-red-800 border-red-200",
+  r2_eliminated: "bg-red-100 text-red-800 border-red-200",
+  finalist: "bg-purple-100 text-purple-800 border-purple-200",
+  winner: "bg-emerald-100 text-emerald-800 border-emerald-200",
+};
+
+const STATUS_GROUPS = [
+  {
+    key: "submission",
+    label: "Submission",
+    statuses: ["Pending"],
+  },
+  {
+    key: "screening",
+    label: "Online Screening",
+    statuses: ["screening_shortlisted", "screening_rejected"],
+  },
+  {
+    key: "r1",
+    label: "Round 1 · Student Elimination",
+    statuses: ["r1_shortlisted", "r1_eliminated"],
+  },
+  {
+    key: "r2",
+    label: "Round 2 · Corporate Summit",
+    statuses: ["r2_eliminated", "finalist"],
+  },
+  {
+    key: "final",
+    label: "Final Stage",
+    statuses: ["winner"],
+  },
+];
 
 export {
   TOPICS,
@@ -308,4 +346,6 @@ export {
   TOPIC_OPTIONS,
   CORE_OBJECTIVES,
   GUIDELINES,
+  STATUS_STYLES,
+  STATUS_GROUPS,
 };

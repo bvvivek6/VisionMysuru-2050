@@ -88,13 +88,14 @@ export const useSubmissionForm = (initialState, validateFn) => {
 
     try {
       const { data } = await api.post("/api/v1/submissions", buildFormData());
-      const teamId = data?.submission?.teamId;
-      setStatusWithToast(
-        "success",
-        `Idea submitted successfully! Team ID: ${teamId}`,
-        "success"
-      );
-      setForm(initialState);
+      const { teamId, teamName, solutionName } = data?.submission || {};
+
+      setStatus({
+        state: "success",
+        message: `Idea submitted successfully!🎊`,
+        data: { teamId, teamName, solutionName },
+      });
+      toast.success(`Idea submitted successfully!`);
     } catch (err) {
       setStatusWithToast(
         "error",
@@ -126,5 +127,9 @@ export const useSubmissionForm = (initialState, validateFn) => {
     handleSubmit,
     confirmSubmit,
     cancelSubmit: () => setStatus({ state: "idle", message: "" }),
+    resetForm: () => {
+      setForm(initialState);
+      setStatus({ state: "idle", message: "" });
+    },
   };
 };

@@ -8,45 +8,7 @@ import {
   FiPhone,
   FiMail,
 } from "react-icons/fi";
-
-const STATUS_STYLES = {
-  Pending: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  screening_shortlisted: "bg-blue-100 text-blue-800 border-blue-200",
-  screening_rejected: "bg-red-100 text-red-800 border-red-200",
-  r1_shortlisted: "bg-indigo-100 text-indigo-800 border-indigo-200",
-  r1_eliminated: "bg-red-100 text-red-800 border-red-200",
-  r2_eliminated: "bg-red-100 text-red-800 border-red-200",
-  finalist: "bg-purple-100 text-purple-800 border-purple-200",
-  winner: "bg-emerald-100 text-emerald-800 border-emerald-200",
-};
-
-const STATUS_GROUPS = [
-  {
-    key: "submission",
-    label: "Submission",
-    statuses: ["Pending"],
-  },
-  {
-    key: "screening",
-    label: "Online Screening",
-    statuses: ["screening_shortlisted", "screening_rejected"],
-  },
-  {
-    key: "r1",
-    label: "Round 1 · Student Elimination",
-    statuses: ["r1_shortlisted", "r1_eliminated"],
-  },
-  {
-    key: "r2",
-    label: "Round 2 · Corporate Summit",
-    statuses: ["r2_eliminated", "finalist"],
-  },
-  {
-    key: "final",
-    label: "Final Stage",
-    statuses: ["winner"],
-  },
-];
+import { STATUS_STYLES, STATUS_GROUPS } from "../constants/content";
 
 const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
   if (!submission) return null;
@@ -63,22 +25,19 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
         >
           <div className="sticky top-0 z-10 bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-[var(--text)]">
-                {submission.solutionName}
-              </h2>
-              <div className="mt-1 flex flex-wrap items-center gap-2 text-[var(--muted)]">
-                <span className="font-mono text-white bg-black text-md rounded px-3 py-0.5">
-                  {submission.teamId}
+              <div className="text-md bg-black inline-block py-2 px-4  rounded-md text-white font-bold text-[var(--text)]">
+                {submission.teamId} / {submission.teamName}
+              </div>
+              <div className="mt-1 flex flex-wrap uppercase items-center gap-2 ">
+                <span className="font-bold text-black  px-2 py-0.5 ">
+                  {submission.solutionName}
                 </span>
                 <span>•</span>
-                <span className="font-bold text-black border-2 border-dashed border-black px-2 py-0.5 rounded">
-                  {submission.teamName}
+                <span className="font-semibold text-black ">
+                  {submission.theme}
                 </span>
-                <span>•</span>
-                <span className="font-medium text-lg">{submission.theme}</span>
               </div>
             </div>
-
             <button
               onClick={onClose}
               className="rounded-2xl p-2 text-white bg-red-600 hover:bg-red-700 transition"

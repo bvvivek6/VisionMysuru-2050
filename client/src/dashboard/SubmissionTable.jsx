@@ -35,7 +35,7 @@ const SubmissionTable = ({ submissions, onView }) => {
                 key={sub._id}
                 className="hover:bg-[var(--surface-2)] transition-colors"
               >
-                <td className="px-6 py-4 font-medium text-sm ">{sub.teamId}</td>
+                <td className="px-6 py-4 font-bold text-sm ">{sub.teamId}</td>
                 <td className="px-6 py-4 font-medium text-sm ">
                   {sub.teamName}
                 </td>

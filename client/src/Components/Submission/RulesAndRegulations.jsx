@@ -159,20 +159,12 @@ const RulesAndRegulations = () => {
             </div>
           </div>
 
-          <div className="mt-6 flex  font-bold items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
+          <div className="mt-6 flex  font-medium items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
             {" "}
-            Submission File -
-            <span className="text-md font-medium text-[var(--muted)]">
-              PDF • Max 2MB
-            </span>
-          </div>
-          <div className="mt-2 flex  font-medium items-center bg-[var(--bg)] border border-[var(--border)] p-4 rounded-xl">
-            {" "}
-            Make sure that - 
-            <span className="italic font-bold text-lg">
-              leader's details like email, phone -{" "}
-            </span>{" "}
-            are valid and accessible.
+            -Submission File - PDF • Max 2MB
+            <br />
+            -Ensure the details like EMAIL, PHONE, TEAM NAME are clearly
+            mentioned and valid in the submission file.
           </div>
         </div>
       </main>

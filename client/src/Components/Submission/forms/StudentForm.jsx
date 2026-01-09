@@ -2,7 +2,12 @@ import React from "react";
 import { CATEGORY, TOPIC_OPTIONS } from "../../../constants/content";
 import { useSubmissionForm, createEmptyMember } from "./useSubmissionForm";
 import { Field, TextInput } from "./FormUI";
-import { TeamMembers, ProjectDetails, SubmitButton } from "./SharedSections";
+import {
+  TeamMembers,
+  ProjectDetails,
+  SubmitButton,
+  SuccessModal,
+} from "./SharedSections";
 
 const StudentForm = () => {
   const initialState = {
@@ -54,10 +59,16 @@ const StudentForm = () => {
     handleSubmit,
     confirmSubmit,
     cancelSubmit,
+    resetForm,
   } = useSubmissionForm(initialState, validate);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <SuccessModal
+        isOpen={status.state === "success"}
+        onClose={resetForm}
+        data={status.data}
+      />
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Team Name" required>
           <TextInput
