@@ -9,9 +9,8 @@ const topicImages = {
   "Heritage Conservation": "/hericon.jpg",
   "Social Equity & Inclusion": "/sociainclu.jpg",
   "Disaster Resilience": "/disresi.jpg",
-  // Fallbacks (until dedicated assets are added)
-  "Digital Governance & Smart City": "/mysuru2.jpeg",
-  "Tourism & Culture": "/mysuru2.jpeg",
+  "Digital Governance & Smart City": "/smart_city.jpg",
+  "Tourism & Culture": "/tourism.jpg",
 };
 
 const TopicsSection = () => {
