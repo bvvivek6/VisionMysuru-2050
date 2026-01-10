@@ -108,16 +108,17 @@ const createSubmission = async (req, res) => {
     // Send confirmation email
     const leader = parsedMembers.find((m) => m.isLeader) || parsedMembers[0];
     if (leader && leader.email) {
-      sendSubmissionEmail(
-        leader.email,
-        leader.name,
-        submission.teamId,
-        submission.teamName,
-        submission.solutionName,
-        submission.organizationName ||
+      sendSubmissionEmail({
+        leaderEmail: leader.email,
+        leaderName: leader.name,
+        teamId: submission.teamId,
+        teamName: submission.teamName,
+        solutionName: submission.solutionName,
+        organizationName:
+          submission.organizationName ||
           submission.institution ||
-          submission.companyName
-      );
+          submission.companyName,
+      });
     }
 
     res.status(201).json({
