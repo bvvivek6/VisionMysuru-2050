@@ -26,12 +26,12 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 sm:px-6">
-        <div className="max-w-2xl text-start">
+        <div className="max-w-2xl  text-start">
           <div>
             <img
               src="/logo_final.png"
               alt="Vision Mysuru 2050 Logo"
-              className="h-17 rounded-full w-auto mb-4"
+              className="h-17 rounded-full  w-auto mb-4"
             />
           </div>
           <h1 className="flex flex-col gap-2 font-bold oswald uppercase tracking-tighter text-white text-4xl leading-tight md:text-6xl">
