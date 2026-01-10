@@ -36,7 +36,7 @@ const LoginPage = () => {
         localStorage.setItem("adminToken", data.token);
         localStorage.setItem("adminUser", data.username);
         toast.success("Welcome back!");
-        navigate("/admin/dashboard");
+        navigate("/admin/secure/dashboard");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Authentication failed");

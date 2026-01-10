@@ -2,20 +2,25 @@ import { Link } from "react-router-dom";
 import { FiArrowRight, FiCalendar } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
+  const [showConftti, setShowConfetti] = useState(false);
+  useEffect(() => {
+    const time = setTimeout(() => setShowConfetti(true), 1400);
+    return () => clearTimeout(time);
+  }, []);
   return (
     <section className="relative min-h-[92vh] overflow-hidden">
-      <Confetti numberOfPieces={400} recycle={false} gravity={0.2} />
+      {showConftti && (
+        <Confetti numberOfPieces={400} recycle={false} gravity={0.2} />
+      )}
+
       <div className="absolute border-b-6 border-[var(--accent)] inset-0 z-0">
         <motion.img
-          src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1767551010/mysuru2_vsbpnf.jpg"
+          src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1768013750/mysuru2_daz3p4.jpg"
           alt="Future vision of Mysuru city"
           className="h-full w-full scale-x-[-1] object-cover"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.8 }}
-          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/10 to-red-600/10" />
       </div>
@@ -53,7 +58,7 @@ const HeroSection = () => {
 
             <a
               href="#timeline"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/30 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
             >
               View timeline <FiCalendar />
             </a>
