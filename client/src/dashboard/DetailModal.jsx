@@ -21,39 +21,46 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.2 }}
-          className="relative max-h-[90vh] w-full max-w-7xl overflow-y-auto rounded-3xl bg-[var(--surface)] border-4 border-black/70 shadow-2xl"
+          className="relative max-h-[90vh] w-full max-w-7xl overflow-y-auto rounded-4xl bg-[var(--surface)] border-4 border-black/70 shadow-2xl"
         >
-          <div className="sticky top-0 z-10 bg-[var(--surface)] px-6 py-4 flex items-center justify-between">
-            <div>
-              <div className="text-md bg-black inline-block py-2 px-4  rounded-md text-white font-bold text-[var(--text)]">
-                {submission.teamId} / {submission.teamName}
-              </div>
-              <div className="mt-1 flex flex-wrap uppercase items-center gap-2 ">
-                <span className="font-bold text-black  px-2 py-0.5 ">
-                  {submission.solutionName}
+          <div className="sticky top-0 z-10 bg-[var(--surface)] px-4 py-4 flex items-center justify-between">
+            <div className="gap-1 flex">
+              <div className="text-md  text-white font-bold text-[var(--text)]">
+                <span className="bg-black inline-block py-2 px-3 rounded-bl rounded-tl-2xl ">
+                  ID
                 </span>
-                <span>•</span>
-                <span className="font-semibold text-black ">
-                  {submission.theme}
+                <span className="bg-black/50 inline-block px-2 rounded-r py-2 ">
+                  {submission.teamId}
+                </span>
+              </div>
+              <div className="text-md  text-white font-bold text-[var(--text)]">
+                <span className="bg-black inline-block py-2 rounded-l px-3 ">
+                  Team
+                </span>
+                <span className="bg-black/50 inline-block  rounded-r px-2 py-2 ">
+                  {submission.teamName}
                 </span>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="rounded-2xl p-2 text-white bg-red-600 hover:bg-red-700 transition"
+              className="rounded-tr-2xl p-2 rounded text-white bg-red-600 hover:bg-red-700 transition"
               aria-label="Close modal"
             >
-              <FiX className="text-xl" />
+              <FiX className="text-2xl" />
             </button>
           </div>
 
-          <div className="flex gap-2 px-2 pb-6 pt-2">
+          <div className="flex gap-2 px-4 pb-6 pt-2">
             <div className="space-y-2  w-90">
               <Card title="Organization Details">
                 <InfoGrid
                   items={[
                     ["Category", submission.category],
-                    ["Organization", submission.organizationName],
+                    submission.organizationType && [
+                      "Organization Type",
+                      submission.organizationType,
+                    ],
                     ["City", submission.city],
                     submission.institution && [
                       "Institution",
@@ -84,7 +91,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                   {submission.members.map((m, idx) => (
                     <div
                       key={idx}
-                      className="rounded-xl border p-3 border-[var(--border)] bg-[var(--bg)]"
+                      className="rounded-xl border p-2.5 border-[var(--border)] bg-[var(--bg)]"
                     >
                       <div className="flex items-center gap-2 mb-1">
                         <FiUser
@@ -117,7 +124,13 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
             </div>
 
             <div className="space-y-2 w-2xl">
-              <Card title="Problem & Solution Summary">
+              <Card title="Project Title & Theme">
+                <h2 className="text-md font-medium text-[var(--text)]">
+                  {submission.solutionName} <span className="px-3">•</span>{" "}
+                  {submission.theme}
+                </h2>
+              </Card>
+              <Card title="Solution Summary">
                 <p className="text-sm text-[var(--text)]">
                   {submission.shortDescription}
                 </p>
@@ -150,7 +163,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                 )}
               </Card>
             </div>
-            <div className="space-y-2 w-120 ">
+            <div className="space-y-2 w-70 ">
               <Card title="Current Status">
                 {updating ? (
                   <div className="flex mt-10 items-center justify-center">
@@ -178,7 +191,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
                                     submission.category
                                   )
                                 }
-                                className={`w-full rounded-xl px-4 py-2 cursor-pointer text-sm tracking-normal  font-medium  border transition text-left
+                                className={`w-full rounded-xl px-4 items-center justify-center flex py-2 cursor-pointer text-[13px] tracking-normal  font-semibold  border transition text-left
                                   ${
                                     active
                                       ? `${STATUS_STYLES[status]} border-[var(--accent)]`
@@ -204,8 +217,8 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
 };
 
 const Card = ({ title, children }) => (
-  <section className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4">
-    <h3 className="mb-3 text-xs font-bold uppercase tracking-wide text-[var(--muted)]">
+  <section className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3.5 shadow-inner">
+    <h3 className="mb-2 text-xs font-bold uppercase tracking-wide text-[var(--muted)]">
       {title}
     </h3>
     {children}
