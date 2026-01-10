@@ -23,21 +23,21 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
           transition={{ duration: 0.2 }}
           className="relative max-h-[90vh] w-full max-w-7xl overflow-y-auto rounded-4xl bg-[var(--surface)] border-4 border-black/70 shadow-2xl"
         >
-          <div className="sticky top-0 z-10 bg-[var(--surface)] px-4 py-4 flex items-center justify-between">
-            <div className="gap-1 flex">
-              <div className="text-md  text-white font-bold text-[var(--text)]">
+          <div className="sticky top-0 z-10 bg-[var(--surface)] px-4 py-4 flex tracking-tight items-center justify-between">
+            <div className="gap-0.5 flex">
+              <div className="text-md  text-white font-medium text-[var(--text)]">
                 <span className="bg-black inline-block py-2 px-3 rounded-bl rounded-tl-2xl ">
                   ID
                 </span>
-                <span className="bg-black/50 inline-block px-2 rounded-r py-2 ">
+                <span className="bg-black/60 inline-block px-2 rounded-r py-2 ">
                   {submission.teamId}
                 </span>
               </div>
-              <div className="text-md  text-white font-bold text-[var(--text)]">
+              <div className="text-md  text-white font-medium text-[var(--text)]">
                 <span className="bg-black inline-block py-2 rounded-l px-3 ">
                   Team
                 </span>
-                <span className="bg-black/50 inline-block  rounded-r px-2 py-2 ">
+                <span className="bg-black/60 inline-block rounded-r px-2 py-2 ">
                   {submission.teamName}
                 </span>
               </div>
@@ -53,7 +53,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
 
           <div className="flex gap-2 px-4 pb-6 pt-2">
             <div className="space-y-2  w-90">
-              <Card title="Organization Details">
+              <Card title="Team Details">
                 <InfoGrid
                   items={[
                     ["Category", submission.category],
@@ -217,7 +217,7 @@ const DetailModal = ({ submission, onClose, onUpdateStatus, updating }) => {
 };
 
 const Card = ({ title, children }) => (
-  <section className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3.5 shadow-inner">
+  <section className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-3.5 shadow-inner">
     <h3 className="mb-2 text-xs font-bold uppercase tracking-wide text-[var(--muted)]">
       {title}
     </h3>
