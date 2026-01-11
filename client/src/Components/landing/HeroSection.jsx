@@ -1,27 +1,19 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiCalendar } from "react-icons/fi";
 import { motion } from "framer-motion";
-import Confetti from "react-confetti";
-import { useState, useEffect } from "react";
 
 const HeroSection = () => {
-  const [showConftti, setShowConfetti] = useState(false);
-  useEffect(() => {
-    const time = setTimeout(() => setShowConfetti(true), 1400);
-    return () => clearTimeout(time);
-  }, []);
   return (
     <section className="relative min-h-[92vh] overflow-hidden">
-      {showConftti && (
-        <Confetti numberOfPieces={400} recycle={false} gravity={0.2} />
-      )}
-
       <div className="absolute border-b-6 border-[var(--accent)] inset-0 z-0">
         <motion.img
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           src="https://res.cloudinary.com/dqlqxcwqr/image/upload/v1768013750/mysuru2_daz3p4.jpg"
           alt="Future vision of Mysuru city"
           className="h-full w-full scale-x-[-1] object-cover"
-        />
+      />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-black/10 to-red-600/10" />
       </div>
 
